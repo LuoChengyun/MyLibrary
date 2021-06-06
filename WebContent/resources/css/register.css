@@ -1,0 +1,91 @@
+* { margin: 0; padding: 0; }
+.body{
+    background-color: aqua;
+}
+.regbox{
+    background-color: wheat;
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    width: 500px;
+    height: 600px;
+    margin: -300px 0 0 -215px;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    overflow: hidden;
+}
+.logo{
+    width: 104px;
+    margin: 50px auto 80px;
+    background:  0 0 no-repeat;
+}
+.title{
+    margin-top: 10px;
+    font-size: 30px;
+    text-align: center;
+}
+.form-item {
+    position: relative;
+    width: 360px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+.form-item input {
+    width: 288px;
+    height: 48px;
+    padding-left: 70px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    font-size: 18px;
+    color: #fff;
+    background-color: green;
+    outline: none;
+}
+
+.backhome{
+	
+    width: 70px;
+    height: 30px;
+    margin-top:10px;
+    margin-left:10px;
+    border-radius: 10px;
+    background-color: blue;
+}
+.backtext{
+	font-size: 18px;
+    color: red;
+	
+}
+
+.form-item button {
+    width: 100px;
+    height: 50px;
+    margin-left: 130px;
+    border: 0;
+    border-radius: 10px;
+    font-size: 18px;
+    color: #fff;
+    outline: none;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+#uname{
+    background:#804e00bd  20px 14px no-repeat;
+}
+#acct {
+    background:#804e00bd  20px 14px no-repeat;
+}
+
+#pwd {
+    background:#804e00bd  23px 11px no-repeat;
+}
+
+#submit{
+    background-color: green;
+}
+
+.loginError{
+    color: red;
+    text-align: center;
+}

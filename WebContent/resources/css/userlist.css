@@ -1,0 +1,75 @@
+.body{
+	background:rgb(245, 194, 114);
+	
+}
+.search{
+	background-color:#fffeb8;
+	text-align:center;
+	font-size:100%;
+	padding: 0;
+    box-shadow: 0 6px 13px 0 rgba(0,0,0,.1);
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 100px;
+	margin:10px 50px;
+	
+}
+.adduser{
+	background-color:blue;
+	text-align:center;
+	font-size:150%;
+	padding: 0;
+    box-shadow: 0 6px 13px 0 rgba(0,0,0,.1);
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 100px;
+	margin:100px 50px;
+}
+.userList{
+	text-align:center;
+	font-size:150%;
+}
+.titletype{
+	text-align:center;
+}
+.search{
+	font-size:150%;
+}
+.input{
+	font-size:120%;
+}
+.list{
+	
+    text-align:center;
+    padding: 0;
+    box-shadow: 0 6px 13px 0 rgba(0,0,0,.1);
+    border-radius: 10px;
+    margin: auto;
+	margin:100px 50px;
+}
+
+
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    
+    width:100%;
+    
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: blue;
+    color: white;
+}

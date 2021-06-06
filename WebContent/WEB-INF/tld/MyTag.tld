@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 自定义标签 -->
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<tag>
+		<name>works</name>
+		<tag-class>onlineRecruitmentSystem.tag.WorkListTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+
+	<tag>
+		<name>users</name>
+		<tag-class>onlineRecruitmentSystem.tag.UserListTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+
+	<tag>
+		<name>managers</name>
+		<tag-class>onlineRecruitmentSystem.tag.ManagerListTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+
+	<tag>
+		<name>jobs</name>
+		<tag-class>onlineRecruitmentSystem.tag.JobListTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+	<tag>
+		<name>companys</name>
+		<tag-class>onlineRecruitmentSystem.tag.CompanyListTag</tag-class>
+		<body-content>empty</body-content>
+	</tag>
+
+</taglib>

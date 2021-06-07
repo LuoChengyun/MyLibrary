@@ -9,9 +9,20 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import ml.db.AuthorRepository;
+import ml.db.BookRepository;
+import ml.db.LendCarRepository;
+import ml.db.LendRepository;
+import ml.db.PublishmentRepository;
+import ml.db.TypeRepository;
 import ml.db.UserRepository;
+import ml.domain.Author;
+import ml.domain.Book;
+import ml.domain.Publishment;
+import ml.domain.Type;
 import ml.domain.User;
 
 @Controller
@@ -21,14 +32,24 @@ public class UserController {
 	
 	@Autowired
 	private UserRepository userRepository;
-	
+	@Autowired
+	private BookRepository bookRepository;
+//	@Autowired
+//	private AuthorRepository authorRepository;
+	@Autowired
+	private TypeRepository TypeRepository;
+	@Autowired
+	private PublishmentRepository publishmentRepository;
+//	@Autowired
+//	private LendRepository lendRepository;
+//	@Autowired
+//	private LendCarRepository lendCarRepository;
 	/**
 	 * 进入注册页面
 	 * @return
 	 */
 	@RequestMapping(value="/registerpage",method=RequestMethod.GET)
 	public String RegisterPage(Model model) {
-		model.addAttribute(new User());
 		return "register";
 	}
 	/**
@@ -77,5 +98,39 @@ public class UserController {
 		
 		return "redirect:/";// 返回首页
 	}
+	
+	/**
+	 * 用书名查询书
+	 * @param bookname
+	 * @param pageNo
+	 * @param pageSize
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="searchbook" , method=RequestMethod.GET)
+	public String SelectBookList(@RequestParam(value="bookname",defaultValue="")String bookname,@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
+		model.addAttribute("bookpaginationSupport", bookRepository.findPageByBookName(pageNo, pageSize,bookname));
+		return "booklist";
+		
+	}
+	/**
+	 * 所有书的列表
+	 * @param pageNo
+	 * @param pageSize
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="booklist" , method=RequestMethod.GET)
+	public String BookList(@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
+		model.addAttribute("bookpaginationSupport", bookRepository.findPage(pageNo, pageSize));
+		model.addAttribute("type", new Type());
+		model.addAttribute("book", new Book());
+		model.addAttribute("publishment", new Publishment());
+		model.addAttribute("author", new Author());
+		return "booklist";
+	}
+
+	
+	
 
 }

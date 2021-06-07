@@ -2,7 +2,7 @@ package ml.db;
 
 import java.util.List;
 
-import ml.domain.*;
+import ml.domain.Author;
 import ml.web.PaginationSupport;
 
 public interface AuthorRepository {

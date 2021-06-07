@@ -8,7 +8,7 @@ public class Author {
     //作者ID
     private int authorId;
     //作者姓名
-    private int authorName;
+    private String authorName;
     //作者性别(0代表男，1代表女)
     private int authorSex;
     //作者介绍
@@ -19,12 +19,32 @@ public class Author {
      * @param authorName
      * @param authorSex
      */
-    public Author(int authorName, int authorSex) {
+    public Author(String authorName, int authorSex) {
         this.authorName = authorName;
         this.authorSex = authorSex;
     }
 
-    public int getAuthorId() {
+    public Author() {
+		// TODO 自动生成的构造函数存根
+	}
+
+	
+
+	/**
+	 * @param authorId
+	 * @param authorName
+	 * @param authorSex
+	 * @param authorIntroduct
+	 */
+	public Author(int authorId, String authorName, int authorSex, String authorIntroduct) {
+		super();
+		this.authorId = authorId;
+		this.authorName = authorName;
+		this.authorSex = authorSex;
+		this.authorIntroduct = authorIntroduct;
+	}
+
+	public int getAuthorId() {
         return authorId;
     }
 
@@ -32,11 +52,11 @@ public class Author {
         this.authorId = authorId;
     }
 
-    public int getAuthorName() {
+    public String getAuthorName() {
         return authorName;
     }
 
-    public void setAuthorName(int authorName) {
+    public void setAuthorName(String authorName) {
         this.authorName = authorName;
     }
 

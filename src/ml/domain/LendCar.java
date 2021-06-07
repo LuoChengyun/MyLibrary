@@ -8,21 +8,25 @@ public class LendCar {
     //借阅车ID
     private int lendCarId;
     //借车包含用户用户ID
-    private int lendCarUser;
+    private User lendCarUser;
     //借车包含的书ID
-    private int lendCarBook;
+    private Book lendCarBook;
 
     /**
      * 构造函数
      * @param lendCarUser
      * @param lendCarBook
      */
-    public LendCar(int lendCarUser, int lendCarBook) {
+    public LendCar(User lendCarUser, Book lendCarBook) {
         this.lendCarUser = lendCarUser;
         this.lendCarBook = lendCarBook;
     }
 
-    public int getLendCarId() {
+    public LendCar() {
+		// TODO 自动生成的构造函数存根
+	}
+
+	public int getLendCarId() {
         return lendCarId;
     }
 
@@ -30,19 +34,21 @@ public class LendCar {
         this.lendCarId = lendCarId;
     }
 
-    public int getLendCarUser() {
-        return lendCarUser;
-    }
+	public User getLendCarUser() {
+		return lendCarUser;
+	}
 
-    public void setLendCarUser(int lendCarUser) {
-        this.lendCarUser = lendCarUser;
-    }
+	public void setLendCarUser(User lendCarUser) {
+		this.lendCarUser = lendCarUser;
+	}
 
-    public int getLendCarBook() {
-        return lendCarBook;
-    }
+	public Book getLendCarBook() {
+		return lendCarBook;
+	}
 
-    public void setLendCarBook(int lendCarBook) {
-        this.lendCarBook = lendCarBook;
-    }
+	public void setLendCarBook(Book lendCarBook) {
+		this.lendCarBook = lendCarBook;
+	}
+
+    
 }

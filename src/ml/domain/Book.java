@@ -26,13 +26,16 @@ public class Book {
     //书的状态
     private int bookState;
     //书的作者
-    private int bookAuthor;
+    private Author bookAuthor;
     //书的出版社
-    private int bookPublish;
+    private Publishment bookPublish;
     //书的类型
-    private int bookType;
+    private Type bookType;
+    
+    
 
-    /**
+    
+	/**
      * 构造函数
      * @param bookName
      * @param bookISBN
@@ -46,7 +49,7 @@ public class Book {
      * @param bookPublish
      * @param bookType
      */
-    public Book(String bookName, String bookISBN, String bookDesc, double bookPrice, Date bookRelease, String bookLocation,int bookCount, int bookState, int bookAuthor, int bookPublish,int bookType) {
+    public Book(String bookName, String bookISBN, String bookDesc, double bookPrice, Date bookRelease, String bookLocation,int bookCount, int bookState, Author bookAuthor, Publishment bookPublish,Type bookType) {
         this.bookName = bookName;
         this.bookISBN = bookISBN;
         this.bookDesc = bookDesc;
@@ -59,8 +62,48 @@ public class Book {
         this.bookPublish = bookPublish;
         this.bookType = bookType;
     }
+    
+    
 
-    public int getBookId() {
+    /**
+	 * @param bookId
+	 * @param bookName
+	 * @param bookISBN
+	 * @param bookDesc
+	 * @param bookPrice
+	 * @param bookRelease
+	 * @param bookLocation
+	 * @param bookCount
+	 * @param bookState
+	 * @param bookAuthor
+	 * @param bookPublish
+	 * @param bookType
+	 */
+	public Book(int bookId, String bookName, String bookISBN, String bookDesc, double bookPrice, Date bookRelease,
+			String bookLocation, int bookCount, int bookState, Author bookAuthor, Publishment bookPublish,
+			Type bookType) {
+		super();
+		this.bookId = bookId;
+		this.bookName = bookName;
+		this.bookISBN = bookISBN;
+		this.bookDesc = bookDesc;
+		this.bookPrice = bookPrice;
+		this.bookRelease = bookRelease;
+		this.bookLocation = bookLocation;
+		this.bookCount = bookCount;
+		this.bookState = bookState;
+		this.bookAuthor = bookAuthor;
+		this.bookPublish = bookPublish;
+		this.bookType = bookType;
+	}
+
+
+
+	public Book() {
+		// TODO 自动生成的构造函数存根
+	}
+
+	public int getBookId() {
         return bookId;
     }
 
@@ -132,29 +175,30 @@ public class Book {
         this.bookState = bookState;
     }
 
-    public int getBookAuthor() {
-        return bookAuthor;
-    }
+	public Author getBookAuthor() {
+		return bookAuthor;
+	}
 
-    public void setBookAuthor(int bookAuthor) {
-        this.bookAuthor = bookAuthor;
-    }
+	public void setBookAuthor(Author bookAuthor) {
+		this.bookAuthor = bookAuthor;
+	}
 
-    public int getBookPublish() {
-        return bookPublish;
-    }
+	public Publishment getBookPublish() {
+		return bookPublish;
+	}
 
-    public void setBookPublish(int bookPublish) {
-        this.bookPublish = bookPublish;
-    }
+	public void setBookPublish(Publishment bookPublish) {
+		this.bookPublish = bookPublish;
+	}
 
-	public int getBookType() {
+	public Type getBookType() {
 		return bookType;
 	}
 
-	public void setBookType(int bookType) {
+	public void setBookType(Type bookType) {
 		this.bookType = bookType;
 	}
+
     
     
 }

@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import ml.db.UserRepository;
-import ml.domain.User;
+import ml.db.*;
+import ml.domain.*;
 
 /**
  * 控制类
@@ -29,11 +29,25 @@ import ml.domain.User;
 public class HomeController {
 	@Autowired
 	private UserRepository userRepository;
+//	@Autowired
+//	private BookRepository bookRepository;
+//	@Autowired
+//	private AuthorRepository authorRepository;
+//	@Autowired
+//	private TypeRepository TypeRepository;
+//	@Autowired
+//	private PublishmentRepository publishmentRepository;
+//	@Autowired
+//	private LendRepository lendRepository;
+//	@Autowired
+//	private LendCarRepository lendCarRepository;
+	
+	
 	
 	@RequestMapping(method = RequestMethod.GET)//相应的请求方法
-	public String HomePage() {
-		
-		return "home";
+	public String HomePage(Model model) {
+		model.addAttribute("user",new User());
+		return "login";
 	}
 	
 	/**
@@ -61,9 +75,11 @@ public class HomeController {
 		if(user!=null) {
 			if(user.getUserState()==0) {//账号可用
 				session.setAttribute("user", user);
+				//普通用户登录
 				if(user.getUserIdentity()==0) {
-					return "home";//普通用户登录
+					return "redirect:/user/booklist";
 				}
+				//管理员登录
 				else {
 					return "redirect:/manager/userlist";//登录成功返回管理员首页
 				}
@@ -93,5 +109,6 @@ public class HomeController {
 		session.invalidate();
 		return "redirect:/";// 返回首页
 	}
+	
 
 }

@@ -22,7 +22,7 @@
             <c:choose>
             	<c:when test="${not empty sessionScope.user }">
             	<a href="<c:url value="/manager/usercenter" />" class="nav-item">${sessionScope.user.userAccount }</a>
-                <a href="<c:url value="logoutpage" />" class="nav-item btn">退出</a>
+                <a href="<c:url value="logoutpage" />" class="nav-item btn">注销</a>
                 </c:when>
                 </c:choose>
             </div>

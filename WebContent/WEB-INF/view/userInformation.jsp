@@ -10,7 +10,7 @@
 <title>用户信息</title>
 </head>
 <body style="background-color:beige">
-<a href="<c:url value="/" />">返回首页</a>
+<a href="<c:url value="booklist" />">返回首页</a>
 <h1>个人信息</h1>
 姓名:<c:out value="${user.userName }" ></c:out><br/><br/>
 账号: <c:out value="${user.userAccount}"></c:out><br/><br/>

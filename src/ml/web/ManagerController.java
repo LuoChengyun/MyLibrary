@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import ml.db.AuthorRepository;
 import ml.db.BookRepository;
-import ml.db.BorrowRepository;
-import ml.db.PublishRepository;
+import ml.db.LendCarRepository;
+import ml.db.PublishmentRepository;
 import ml.db.TypeRepository;
 import ml.db.UserRepository;
 import ml.domain.User;

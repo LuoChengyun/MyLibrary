@@ -21,8 +21,28 @@ public class Publishment {
         this.publishName = publishName;
         this.publishLocal = publishLocal;
     }
+    
+    
 
-    public int getPublishId() {
+    /**
+	 * @param publishId
+	 * @param publishName
+	 * @param publishLocal
+	 */
+	public Publishment(int publishId, String publishName, String publishLocal) {
+		super();
+		this.publishId = publishId;
+		this.publishName = publishName;
+		this.publishLocal = publishLocal;
+	}
+
+
+
+	public Publishment() {
+		// TODO 自动生成的构造函数存根
+	}
+
+	public int getPublishId() {
         return publishId;
     }
 

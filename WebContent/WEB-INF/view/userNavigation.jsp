@@ -20,11 +20,13 @@
 <div class="nav">
     <nav class="nav-bar">
         <ul class="nav-items">
-    		<li><a href="<c:url value="/" />" class="nav-item">首页</a></li>
+    		<li><a href="<c:url value="booklist" />" class="nav-item">首页</a></li>
     		<li><a href="<c:url value="bendcar" />" class="nav-item">借阅车</a></li>
     		<li><a href="<c:url value="myrecord" />" class="nav-item">借书记录</a></li>
-    		<div class="nav-btn">
-            <c:choose>
+    		<li><a href="<c:url value="/user/usercenter" />" class="nav-item">${user.userAccount }</a></li>
+    		<li><a href="<c:url value="/" />" class="nav-item btn">注销</a></li>
+    		<%-- <div class="nav-btn">
+             <c:choose>
             	<c:when test="${not empty sessionScope.user }">
             	<a href="<c:url value="/user/usercenter" />" class="nav-item">${sessionScope.user.userAccount }</a>
                 <a href="<c:url value="logoutpage" />" class="nav-item btn">退出</a>
@@ -33,8 +35,8 @@
                  <a href="<c:url value="loginpage" />" class="nav-item btn">登录</a>
                 <a href="<c:url value="/user/registerpage" />" class="nav-item btn">注册</a>
                 </c:otherwise>
-                </c:choose>
-            </div>
+                </c:choose> 
+            </div> --%>
 		</ul>
     </nav>
 </div>

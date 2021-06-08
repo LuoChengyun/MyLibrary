@@ -9,6 +9,7 @@ public interface BookRepository {
 	//通过书名查询一本书
     Book findByBookName(String bookName);
     //增加一本书
+    Book findByBookId(int bookId);
     Book addBook(Book book);
     //通过书的ID修改一本书的数量
     int alterBookCount(int bookId);

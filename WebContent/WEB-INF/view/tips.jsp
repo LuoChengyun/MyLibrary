@@ -8,13 +8,13 @@
 <meta charset="UTF-8">
 <title>提示</title>
 <%@ page language="java" import="java.lang.*"%>
-<%String base="/Mylibrary/resources/css/"; %>
+<%String base="/MyLibrary/resources/css/"; %>
 </head>
 <link href="<%=base %>tips.css" type="text/css" rel="stylesheet">
 <body>
 
 <div class="login-container">
-  <a style="font-size:150%;" href="<c:url value="/" />">返回首页</a>   
+  <a style="font-size:150%;" href="<c:url value="/manager/userlist" />">返回首页</a>   
 <h2 class="tips"><c:out value="${tipMessage}" ></c:out></h2><br/><br/>
 </div>
 		

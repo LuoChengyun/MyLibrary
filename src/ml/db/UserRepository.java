@@ -24,6 +24,10 @@ public interface UserRepository {
     User findByAccount(String userAccount,String userPassword);
     //通过用户ID删除用户
     int removeUser(int id);
+    //禁用用户
+    int checkUserById(int id);
+    //恢复用户
+    int backUserById(int id);
     //通过ID修改用户
     User alterUserByUserId(User user);
 	//依据页码和指定页面大小，返回用户列表

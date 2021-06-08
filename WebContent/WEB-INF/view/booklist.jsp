@@ -15,7 +15,7 @@
 <%@ page language="java" import="java.lang.*"%>
 <%String base="/MyLibrary/resources/css/"; %>
 </head>
-<link href="<%=base %>userlist.css" type="text/css" rel="stylesheet">
+<link href="<%=base %>booklist.css" type="text/css" rel="stylesheet">
 <body>
 <jsp:include page="userNavigation.jsp"></jsp:include><br></br>
  <div class="search">
@@ -59,10 +59,10 @@
 					<c:out value="${book.bookType.getTypeName()}" />
 				</td> 
  				<td>
-					<a href="<c:url value="checkuser?id=${user.userId }" />">详情</a>
+					<a href="<c:url value="checkuser?id=${book.bookId }" />">详情</a>
 				</td>
 				<td>
-					<a href="<c:url value="deleteuser?id=${user.userId }" />">加车</a>
+					<a href="<c:url value="addlendcar?bookid=${book.bookId }&userid=${user.userId }" />">加车</a>
 				</td>
 			</tr>
 		</c:forEach>

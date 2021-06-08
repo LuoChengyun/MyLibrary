@@ -30,10 +30,14 @@ public class JdbcUserRepository implements UserRepository {
 		this.jdbc =jdbc;
 	}
 
+	public JdbcUserRepository() {
+		// TODO 自动生成的构造函数存根
+	}
+
 	@Override
 	public int getUserCount() {
 		// TODO 自动生成的方法存根
-		return (int) jdbc.queryForLong("select count(user_id) from Users");
+		return (int) jdbc.queryForLong("select count(user_id) from Users where user_remove=0 ");
 	}
 
 	@Override
@@ -85,6 +89,20 @@ public class JdbcUserRepository implements UserRepository {
 		int rows=jdbc.update("update users set user_remove=1 where user_id=?",id);	
 		  return rows;
 	}
+	
+	@Override
+	public int checkUserById(int id) {
+		// TODO 自动生成的方法存根
+		int rows=jdbc.update("update users set user_state=1 where user_id=?",id);
+		return rows;
+	}
+	
+	@Override
+	public int backUserById(int id) {
+		// TODO 自动生成的方法存根
+		int rows=jdbc.update("update users set user_state=0 where user_id=?",id);
+		return rows;
+	}
 
 	@Override
 	public User alterUserByUserId(User user) {
@@ -112,14 +130,14 @@ public class JdbcUserRepository implements UserRepository {
 	}
 
 	@Override
-	public PaginationSupport<User> findPageByUserName(int pageNo, int pageSize, String userAccount) {
+	public PaginationSupport<User> findPageByUserName(int pageNo, int pageSize, String userName) {
 		// TODO 自动生成的方法存根
 		int totalCount = (int) getUserCount();
 		int startIndex = PaginationSupport.convertFromPageToStartIndex(pageNo, pageSize);
 		if (totalCount < 1)
 			return new PaginationSupport<User>(new ArrayList<User>(0), 0);
 
-		List<User> items = jdbc.query(SELECT_USER+" where user_remove=0 and user_account like ? order by user_id  limit ? offset  ?", new UserRowMapper(), "%"+userAccount+"%",pageSize, startIndex);
+		List<User> items = jdbc.query(SELECT_USER+" where user_remove=0 and user_name like ? order by user_id  limit ? offset  ?", new UserRowMapper(), "%"+userName+"%",pageSize, startIndex);
 		PaginationSupport<User> ps = new PaginationSupport<User>(items, totalCount, pageSize, startIndex);
 		return ps;
 	}
@@ -147,6 +165,9 @@ public class JdbcUserRepository implements UserRepository {
 	private String SELECT_USER = "select user_id,user_name,user_account,user_password,user_identity,user_state,user_remove from users ";
 	private String UPDATE_USER = "update users set user_name=?,user_account=?,user_password=? where user_id=? ";
 	private String SELECT_PAGE_USERS = SELECT_USER+" where user_remove=0 order by user_id  limit ? offset  ?";
+
+
+	
 
 	
 }

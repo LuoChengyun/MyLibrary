@@ -16,8 +16,9 @@
     <nav class="nav-bar">
         <ul class="nav-items">
             <li> <a href="<c:url value="userlist" />" class="nav-item" >用户管理</a></li>
+            <li> <a href="<c:url value="managetype" />" class="nav-item" >分类管理管理</a></li>
              <li> <a href="<c:url value="backbook" />"class="nav-item" >还书管理</a></li>
-              <li> <a href="<c:url value="bendrecord" />"class="nav-item" >借书记录管理</a></li>
+              <li> <a href="<c:url value="managelend" />"class="nav-item" >借书记录管理</a></li>
               <div class="nav-btn">
             <c:choose>
             	<c:when test="${not empty sessionScope.user }">

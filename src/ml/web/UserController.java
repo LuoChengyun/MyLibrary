@@ -34,16 +34,16 @@ public class UserController {
 	private UserRepository userRepository;
 	@Autowired
 	private BookRepository bookRepository;
-//	@Autowired
-//	private AuthorRepository authorRepository;
+	@Autowired
+	private AuthorRepository authorRepository;
 	@Autowired
 	private TypeRepository TypeRepository;
 	@Autowired
 	private PublishmentRepository publishmentRepository;
-//	@Autowired
-//	private LendRepository lendRepository;
-//	@Autowired
-//	private LendCarRepository lendCarRepository;
+	@Autowired
+	private LendRepository lendRepository;
+	@Autowired
+	private LendCarRepository lendCarRepository;
 	/**
 	 * 进入注册页面
 	 * @return
@@ -130,7 +130,15 @@ public class UserController {
 		return "booklist";
 	}
 
-	
-	
+	@RequestMapping(value="addlendcar" , method=RequestMethod.GET)
+	public String addLendCar(@RequestParam(value="bookid",defaultValue="0") int bookid,@RequestParam(value="userid",defaultValue="0") int userid,Model model) {
+		int rows=lendCarRepository.addBookToCart(userid, bookid);
+		if (rows==0) {
+			model.addAttribute("tipMessage","添加失败");
+		}else {
+			model.addAttribute("tipMessage","添加成功");
+		}
+		return "tips";
+	}
 
 }

@@ -64,8 +64,39 @@ public class Book {
     }
     
     
+    
+    
 
     /**
+	 * @param bookId
+	 * @param bookName
+	 * @param bookISBN
+	 * @param bookDesc
+	 * @param bookPrice
+	 * @param bookRelease
+	 * @param bookLocation
+	 * @param bookCount
+	 * @param bookState
+	 */
+	public Book(int bookId, String bookName, String bookISBN, String bookDesc, double bookPrice, Date bookRelease,
+			String bookLocation, int bookCount, int bookState) {
+		super();
+		this.bookId = bookId;
+		this.bookName = bookName;
+		this.bookISBN = bookISBN;
+		this.bookDesc = bookDesc;
+		this.bookPrice = bookPrice;
+		this.bookRelease = bookRelease;
+		this.bookLocation = bookLocation;
+		this.bookCount = bookCount;
+		this.bookState = bookState;
+	}
+
+
+
+
+
+	/**
 	 * @param bookId
 	 * @param bookName
 	 * @param bookISBN

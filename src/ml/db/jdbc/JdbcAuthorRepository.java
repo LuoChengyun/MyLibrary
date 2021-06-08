@@ -16,7 +16,6 @@ import ml.web.PaginationSupport;
 public class JdbcAuthorRepository implements AuthorRepository {
 	
 	
-	private String SELECT_AUTHOR = "select author_name,author_sex,author_introduct from author ";
 
 	@Override
 	public long authorCount() {
@@ -65,5 +64,8 @@ public class JdbcAuthorRepository implements AuthorRepository {
 		// TODO 自动生成的方法存根
 		return null;
 	}
+	
+	
+	private String SELECT_AUTHOR = "select author_name,author_sex,author_introduct from author ";
 
 }

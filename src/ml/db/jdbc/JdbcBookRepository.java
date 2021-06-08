@@ -32,6 +32,10 @@ public class JdbcBookRepository implements BookRepository{
 		this.jdbc =jdbc;
 	}
 	
+	public JdbcBookRepository() {
+		// TODO 自动生成的构造函数存根
+	}
+
 	@Override
 	public int getBookCount() {
 		// TODO 自动生成的方法存根
@@ -48,6 +52,18 @@ public class JdbcBookRepository implements BookRepository{
 		}
 		return book;
 	}
+	
+	@Override
+	public Book findByBookId(int bookId) {
+		// TODO 自动生成的方法存根
+		Book book = null;
+		try {
+			book=jdbc.queryForObject( SELECT_BOOK + " where book book_id=?",new BookRowMapper() ,bookId);
+		}catch (DataAccessException e) {
+		}
+		return book;
+	}
+	
 
 	@Override
 	public Book addBook(Book book) {
@@ -135,6 +151,10 @@ public class JdbcBookRepository implements BookRepository{
 	private String UPDATE_BOOK = " update book set book_name=?,book_ISBN=?,book_dese=?,book_price=?,book_release=?,book_localtion=?,book_count=?,book_state=?,book_author=?,book_publish=?,book_type=?";
 	//搜书
 	private String SELECT_PAGE_BOOKS = SELECT_BOOK + " order by s1.book_id desc limit ? offset  ? ";
+
+	
+
+	
 	
 
 }

@@ -29,8 +29,27 @@ public class Lend {
         this.lendUser = lendUser;
         this.lendDay = lendDay;
     }
+    
+    
 
-    public Lend() {
+    /**
+	 * @param lendId
+	 * @param lendBook
+	 * @param lendUser
+	 * @param lendDay
+	 * @param lendBack
+	 */
+	public Lend(int lendId, Book lendBook, User lendUser, Date lendDay, Date lendBack) {
+		this.lendId = lendId;
+		this.lendBook = lendBook;
+		this.lendUser = lendUser;
+		this.lendDay = lendDay;
+		this.lendBack = lendBack;
+	}
+
+
+
+	public Lend() {
 		// TODO 自动生成的构造函数存根
 	}
 

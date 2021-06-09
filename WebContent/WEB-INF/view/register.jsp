@@ -11,7 +11,7 @@
 <%String base="/MyLibrary/resources/css/"; %>
   </head>
   <link href="<%=base %>register.css" type="text/css" rel="stylesheet">
-  <body>
+  <body class="body">
   <div class="regbox">
   <div class="backhome">
   		<a class="backtext" href="/MyLibrary/loginpage">去登录</a>

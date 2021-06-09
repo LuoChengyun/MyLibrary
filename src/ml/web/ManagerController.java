@@ -19,7 +19,10 @@ import ml.db.LendRepository;
 import ml.db.PublishmentRepository;
 import ml.db.TypeRepository;
 import ml.db.UserRepository;
+import ml.domain.Author;
+import ml.domain.Book;
 import ml.domain.Lend;
+import ml.domain.Publishment;
 import ml.domain.Type;
 import ml.domain.User;
 
@@ -207,6 +210,117 @@ public class ManagerController {
 	
 	
 	/**
+	 * 获取出版社列表
+	 * @param pageNo
+	 * @param pageSize
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/managepublishment",method=RequestMethod.GET)
+	public String PublishmentList(@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
+		model.addAttribute("publishmentpaginationSupport",publishmentRepository.findPage(pageNo, pageSize));
+		model.addAttribute("publishment",new Publishment());
+		return "managePublishment" ;
+	}
+	
+	/**
+	 * 删除出版社
+	 */
+	@RequestMapping(value="/deletepublishment")
+	public String deletePublishment(@RequestParam(value="id",defaultValue="0") int publishId,Model model){
+		int row=publishmentRepository.removePublishment(publishId);
+		String string="";
+		if (row==0) {
+			string="删除出版社失败";
+		}else {
+			string="删除出版社成功";
+		}
+		model.addAttribute("tipMessage", string);
+		return "tips";
+	}
+	
+	/**
+	 * 增加出版社
+	 * @param publishment
+	 * @param errors
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/addpublishment",method=RequestMethod.GET)
+	public String addPblishment(@Valid Publishment publishment,Errors errors ,HttpSession session,Model model) {
+		if (errors.hasErrors()) {
+			return "managePublishment";
+		}
+		Publishment newpublishment = publishmentRepository.addPublishment(publishment);
+		String string="";
+		if (newpublishment==null) {
+			string="添加出版社失败";
+		}else {
+			string="添加出版社成功";
+		}
+		model.addAttribute("tipMessage", string);
+		return "tips";
+	}
+	
+	
+	/**
+	 * 获取作者列表
+	 * @param pageNo
+	 * @param pageSize
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/manageauthor",method=RequestMethod.GET)
+	public String AuthorList(@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
+		model.addAttribute("authorpaginationSupport",authorRepository.findPage(pageNo, pageSize));
+		model.addAttribute("author",new Author());
+		return "manageAuthor" ;
+	}
+	
+	/**
+	 * 删除作者
+	 */
+	@RequestMapping(value="/deleteauthor")
+	public String deleteAuthor(@RequestParam(value="id",defaultValue="0") int authorId,Model model){
+		int row=authorRepository.removeAuthor(authorId);
+		String string="";
+		if (row==0) {
+			string="删除作者失败";
+		}else {
+			string="删除作者成功";
+		}
+		model.addAttribute("tipMessage", string);
+		return "tips";
+	}
+	
+	/**
+	 * 增加作者
+	 * @param author
+	 * @param errors
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/addauthor",method=RequestMethod.GET)
+	public String addAuthor(@Valid Author author,Errors errors ,HttpSession session,Model model) {
+		if (errors.hasErrors()) {
+			return "manageAuthor";
+		}
+		Author newauthor = authorRepository.addAuthor(author);
+		String string="";
+		if (newauthor==null) {
+			string="添加作者失败";
+		}else {
+			string="添加作者成功";
+		}
+		model.addAttribute("tipMessage", string);
+		return "tips";
+	}
+	
+	
+	
+	/**
 	 * 获取记录列表
 	 * @param pageNo
 	 * @param pageSize
@@ -221,7 +335,7 @@ public class ManagerController {
 	}
 	
 	/**
-	 * 删除分类
+	 * 删除记录
 	 */
 	@RequestMapping(value="/deletelend")
 	public String deleteLend(@RequestParam(value="id",defaultValue="0") int id,Model model){
@@ -235,6 +349,64 @@ public class ManagerController {
 		model.addAttribute("tipMessage", string);
 		return "tips";
 	}
+	
+	
+	/**
+	 * 用书名查询书
+	 * @param bookname
+	 * @param pageNo
+	 * @param pageSize
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="managersearchbook" , method=RequestMethod.GET)
+	public String SelectBookList(@RequestParam(value="bookname",defaultValue="")String bookname,@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
+		model.addAttribute("bookpaginationSupport", bookRepository.findPageByBookName(pageNo, pageSize,bookname));
+		return "manageBook";
+		
+	}
+	
+	/**
+	 * 所有书的列表
+	 * @param pageNo
+	 * @param pageSize
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="managebook" , method=RequestMethod.GET)
+	public String BookList(@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
+		model.addAttribute("bookpaginationSupport", bookRepository.findPage(pageNo, pageSize));
+		model.addAttribute("type", new Type());
+		model.addAttribute("book", new Book());
+		model.addAttribute("publishment", new Publishment());
+		model.addAttribute("author", new Author());
+		return "manageBook";
+	}
+	
+	/**
+	 * 增加书籍
+	 * @param book
+	 * @param errors
+	 * @param session
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/addbook",method=RequestMethod.GET)
+	public String addBook(@Valid Book book,Errors errors ,HttpSession session,Model model) {
+		if (errors.hasErrors()) {
+			return "manageBook";
+		}
+		Book newbook = bookRepository.addBook(book);
+		String string="";
+		if (newbook==null) {
+			string="添加图书失败";
+		}else {
+			string="添加图书成功";
+		}
+		model.addAttribute("tipMessage", string);
+		return "tips";
+	}
+
 	
 	
 }

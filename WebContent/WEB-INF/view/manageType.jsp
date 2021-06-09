@@ -16,7 +16,7 @@
 <%String base="/MyLibrary/resources/css/"; %>
 </head>
 <link href="<%=base %>userlist.css" type="text/css" rel="stylesheet">
-<body>
+<body class="body">
 <jsp:include page="managerNavigation.jsp"></jsp:include>
 <div class="list">
 	<h1 class="titletype">分类列表</h1> 

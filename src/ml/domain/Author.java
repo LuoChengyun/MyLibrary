@@ -23,8 +23,13 @@ public class Author {
         this.authorName = authorName;
         this.authorSex = authorSex;
     }
+    
+    
 
-    public Author() {
+
+
+
+	public Author() {
 		// TODO 自动生成的构造函数存根
 	}
 

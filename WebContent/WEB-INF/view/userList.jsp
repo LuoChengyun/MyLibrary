@@ -16,8 +16,8 @@
 <%String base="/MyLibrary/resources/css/"; %>
 </head>
 <link href="<%=base %>userlist.css" type="text/css" rel="stylesheet">
-<body>
-<jsp:include page="managerNavigation.jsp"></jsp:include><br></br>
+<body class="body">
+<jsp:include page="managerNavigation.jsp"></jsp:include>
  <div class="search">
 	<form method="GET" action="searchuser">
 		<input type="text" class="input" placeholder="请输入用户姓名" name="username"/>

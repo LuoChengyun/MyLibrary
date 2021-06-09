@@ -130,6 +130,13 @@ public class UserController {
 		return "booklist";
 	}
 
+	/**
+	 * 添加借阅车
+	 * @param bookid
+	 * @param userid
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="addlendcar" , method=RequestMethod.GET)
 	public String addLendCar(@RequestParam(value="bookid",defaultValue="0") int bookid,@RequestParam(value="userid",defaultValue="0") int userid,Model model) {
 		int rows=lendCarRepository.addBookToCart(userid, bookid);

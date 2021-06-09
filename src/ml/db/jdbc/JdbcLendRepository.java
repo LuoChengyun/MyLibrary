@@ -71,11 +71,10 @@ public class JdbcLendRepository implements LendRepository {
 					new Book(rs.getInt("book_id"),
 							rs.getString("book_name"),
 							rs.getString("book_ISBN"),
-							rs.getString("book_dese"),
+							rs.getString("book_desc"),
 							rs.getDouble("book_price"),
 							rs.getDate("book_release"),
 							rs.getString("book_localtion"),
-							rs.getInt("book_count"),
 							rs.getInt("book_state")),
 					new User(rs.getInt("user_id"),
 							rs.getString("user_name"),
@@ -92,7 +91,7 @@ public class JdbcLendRepository implements LendRepository {
 	
 	private String SELECT_LEND = "select s1.lend_id,s1.lend_book,s1.lend_user,s1.lend_day,s1.lend_back,"
 			+ "s2.user_id,s2.user_name,s2.user_account,s2.user_password,s2.user_identity,s2.user_state,user_remove,"
-			+ "s3.book_id,s3.book_name,s3.book_ISBN,s3.book_dese,s3.book_price,s3.book_release,s3.book_localtion,s3.book_count,s3.book_state "
+			+ "s3.book_id,s3.book_name,s3.book_ISBN,s3.book_desc,s3.book_price,s3.book_release,s3.book_localtion,s3.book_state "
 			+ "from lend s1,book s3,users s2 "
 			+ "where s1.lend_book=s3.book_id and s1.lend_user=s2.user_id ";
 	private String SELECT_PAGE_LENDS = SELECT_LEND+" order by lend_id desc limit ? offset  ?  ";

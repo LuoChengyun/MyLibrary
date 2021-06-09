@@ -39,7 +39,7 @@ public class JdbcLendCarRepository implements LendCarRepository {
 	private String INSERT_LENDCAR = "insert into lendcar (lendcar_user,lendcar_book) values (?,?) ";
 	private String SELECT_LENDCAR = "select s1.lendcar_id,s1.lendcar_user,s1.lendcar_book,"
 			+ "s2.user_id,s2.user_name,s2.user_account,s2.user_password,s2.user_identity,s2.user_state,user_remove,"
-			+ "s3.book_id,s3.book_name,s3.book_ISBN,s3.book_dese,s3.book_price,s3.book_release,s3.book_localtion,s3.book_count,s3.book_state,s3.book_author,s3.book_publish,s3.book_type "
+			+ "s3.book_id,s3.book_name,s3.book_ISBN,s3.book_desc,s3.book_price,s3.book_release,s3.book_localtion,s3.book_count,s3.book_state,s3.book_author,s3.book_publish,s3.book_type "
 			+ "from lendcar s1,users s2,book s3 "
 			+ "where lendcar_id=? ";
 

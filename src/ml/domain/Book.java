@@ -21,8 +21,6 @@ public class Book {
     private Date bookRelease;
     //书的位置
     private String bookLocation;
-    //书的数量
-    private int bookCount;
     //书的状态
     private int bookState;
     //书的作者
@@ -43,20 +41,18 @@ public class Book {
      * @param bookPrice
      * @param bookRelease
      * @param bookLocation
-     * @param bookCount
      * @param bookState
      * @param bookAuthor
      * @param bookPublish
      * @param bookType
      */
-    public Book(String bookName, String bookISBN, String bookDesc, double bookPrice, Date bookRelease, String bookLocation,int bookCount, int bookState, Author bookAuthor, Publishment bookPublish,Type bookType) {
+    public Book(String bookName, String bookISBN, String bookDesc, double bookPrice, Date bookRelease, String bookLocation, int bookState, Author bookAuthor, Publishment bookPublish,Type bookType) {
         this.bookName = bookName;
         this.bookISBN = bookISBN;
         this.bookDesc = bookDesc;
         this.bookPrice = bookPrice;
         this.bookRelease = bookRelease;
         this.bookLocation = bookLocation;
-        this.bookCount = bookCount;
         this.bookState = bookState;
         this.bookAuthor = bookAuthor;
         this.bookPublish = bookPublish;
@@ -75,11 +71,10 @@ public class Book {
 	 * @param bookPrice
 	 * @param bookRelease
 	 * @param bookLocation
-	 * @param bookCount
 	 * @param bookState
 	 */
 	public Book(int bookId, String bookName, String bookISBN, String bookDesc, double bookPrice, Date bookRelease,
-			String bookLocation, int bookCount, int bookState) {
+			String bookLocation, int bookState) {
 		super();
 		this.bookId = bookId;
 		this.bookName = bookName;
@@ -88,7 +83,6 @@ public class Book {
 		this.bookPrice = bookPrice;
 		this.bookRelease = bookRelease;
 		this.bookLocation = bookLocation;
-		this.bookCount = bookCount;
 		this.bookState = bookState;
 	}
 
@@ -104,14 +98,13 @@ public class Book {
 	 * @param bookPrice
 	 * @param bookRelease
 	 * @param bookLocation
-	 * @param bookCount
 	 * @param bookState
 	 * @param bookAuthor
 	 * @param bookPublish
 	 * @param bookType
 	 */
 	public Book(int bookId, String bookName, String bookISBN, String bookDesc, double bookPrice, Date bookRelease,
-			String bookLocation, int bookCount, int bookState, Author bookAuthor, Publishment bookPublish,
+			String bookLocation, int bookState, Author bookAuthor, Publishment bookPublish,
 			Type bookType) {
 		super();
 		this.bookId = bookId;
@@ -121,7 +114,6 @@ public class Book {
 		this.bookPrice = bookPrice;
 		this.bookRelease = bookRelease;
 		this.bookLocation = bookLocation;
-		this.bookCount = bookCount;
 		this.bookState = bookState;
 		this.bookAuthor = bookAuthor;
 		this.bookPublish = bookPublish;
@@ -188,14 +180,6 @@ public class Book {
 
     public void setBookLocation(String bookLocation) {
         this.bookLocation = bookLocation;
-    }
-
-    public int getBookCount() {
-        return bookCount;
-    }
-
-    public void setBookCount(int bookCount) {
-        this.bookCount = bookCount;
     }
 
     public int getBookState() {

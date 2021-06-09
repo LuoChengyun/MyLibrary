@@ -15,6 +15,11 @@
 
 }
 
+.logo{
+	font-size: 20px;
+	color: aqua;
+}
+
 .nav-bar ul {
     list-style: none;
     display: flex;

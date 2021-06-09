@@ -39,7 +39,7 @@ public class JdbcBookRepository implements BookRepository{
 	@Override
 	public int getBookCount() {
 		// TODO 自动生成的方法存根
-		return (int)jdbc.queryForLong("select count(book_id) from book");
+		return (int)jdbc.queryForLong("select count(book_id) from book ");
 	}
 	
 	@Override
@@ -68,31 +68,64 @@ public class JdbcBookRepository implements BookRepository{
 	@Override
 	public Book addBook(Book book) {
 		// TODO 自动生成的方法存根
-		return null;
+		jdbc.update(INSERT_BOOK,
+				book.getBookName(),
+				book.getBookISBN(),
+				book.getBookDesc(),
+				book.getBookPrice(),
+				book.getBookRelease(),
+				book.getBookLocation(),
+				book.getBookState(),
+				book.getBookAuthor(),
+				book.getBookPublish(),
+				book.getBookType());
+		return book;
 	}
 
-	@Override
-	public int alterBookCount(int bookId) {
-		// TODO 自动生成的方法存根
-		return 0;
-	}
 
 	@Override
-	public int alterBookState(int bookId) {
+	public int alterBookState_0(int bookId) {
 		// TODO 自动生成的方法存根
-		return 0;
+		int rows = jdbc.update("update book set book_state=0 where book_id=? ",bookId);
+		return rows;
+	}
+	
+	@Override
+	public int alterBookState_1(int bookId) {
+		// TODO 自动生成的方法存根
+		int rows = jdbc.update("update book set book_state=1 where book_id=? ",bookId);
+		return rows;
+	}
+	
+	@Override
+	public int alterBookState_2(int bookId) {
+		// TODO 自动生成的方法存根
+		int rows = jdbc.update("update book set book_state=2 where book_id=? ",bookId);
+		return rows;
 	}
 
 	@Override
 	public int removeByBookId(int bookId) {
 		// TODO 自动生成的方法存根
-		return 0;
+		int rows = jdbc.update("delete  from book  where book_id=? ",bookId);
+		return rows;
 	}
 
 	@Override
-	public int alterByBookId(int bookId) {
+	public Book  alterBook(Book book) {
 		// TODO 自动生成的方法存根
-		return 0;
+		jdbc.update(UPDATE_BOOK,
+				book.getBookName(),
+				book.getBookISBN(),
+				book.getBookDesc(),
+				book.getBookPrice(),
+				book.getBookRelease(),
+				book.getBookLocation(),
+				book.getBookState(),
+				book.getBookAuthor(),
+				book.getBookPublish(),
+				book.getBookType());
+		return book;
 	}
 
 	@Override
@@ -125,11 +158,10 @@ public class JdbcBookRepository implements BookRepository{
 			return new Book(rs.getInt("book_id"),
 					rs.getString("book_name"),
 					rs.getString("book_ISBN"),
-					rs.getString("book_dese"),
+					rs.getString("book_desc"),
 					rs.getDouble("book_price"),
 					rs.getDate("book_release"),
 					rs.getString("book_localtion"),
-					rs.getInt("book_count"),
 					rs.getInt("book_state"),
 					new Author(rs.getInt("author_id"),rs.getString("author_name"),rs.getInt("author_sex"),rs.getString("author_introduct")),
 					new Publishment(rs.getInt("publish_id"),rs.getString("publish_name"),rs.getString("publish_local")),
@@ -137,18 +169,18 @@ public class JdbcBookRepository implements BookRepository{
 		}
 	}
 	//插入书
-	private String INSERT_BOOK = " insert into book (book_name,book_ISBN,book_dese,book_price,book_release,book_localtion,book_count,book_state,book_author,book_publish,book_type) values (?,?,?,?,?,?,?,?,?,?,?)";
+	private String INSERT_BOOK = " insert into book (book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) values (?,?,?,?,?,?,?,?,?,?)";
 	//查询书
 	private String SELECT_BOOK = 
-	" select s1.book_id,s1.book_name,s1.book_ISBN,s1.book_dese,s1.book_price,s1.book_release,s1.book_localtion,"+
-	" s1.book_count,s1.book_state,s1.book_author,s1.book_publish,s1.book_type,"+
+	" select s1.book_id,s1.book_name,s1.book_ISBN,s1.book_desc,s1.book_price,s1.book_release,s1.book_localtion,"+
+	" s1.book_state,s1.book_author,s1.book_publish,s1.book_type,"+
 	" s2.author_id,s2.author_name,s2.author_sex,s2.author_introduct,"+
 	" s3.publish_id,s3.publish_name,s3.publish_local,"+
 	" s4.type_id,s4.type_name"+
 	" from book s1,author s2,publishment s3,type s4 "+
 	" where s1.book_author=s2.author_id and s1.book_publish=s3.publish_id and s1.book_type=s4.type_id ";
 	//更新书
-	private String UPDATE_BOOK = " update book set book_name=?,book_ISBN=?,book_dese=?,book_price=?,book_release=?,book_localtion=?,book_count=?,book_state=?,book_author=?,book_publish=?,book_type=?";
+	private String UPDATE_BOOK = " update book set book_name=?,book_ISBN=?,book_desc=?,book_price=?,book_release=?,book_localtion=?,book_state=?,book_author=?,book_publish=?,book_type=? ";
 	//搜书
 	private String SELECT_PAGE_BOOKS = SELECT_BOOK + " order by s1.book_id desc limit ? offset  ? ";
 

@@ -29,7 +29,7 @@
     <div class="form-item">
         密码:<sf:input path="userPassword" id="pwd" placeholder="密码" /><sf:errors path="userPassword" cssClass="error"/><br/>
     </div>
-    <input type="submit"  id="submit"  value="提 交" />
+    <input type="submit"  class="submit"  value="提 交" />
      <h3 class="logerror">${logined}</h3>
      </sf:form>
 </div>

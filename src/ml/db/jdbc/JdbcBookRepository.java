@@ -47,7 +47,7 @@ public class JdbcBookRepository implements BookRepository{
 		// TODO 自动生成的方法存根
 		Book book = null;
 		try {
-			book=jdbc.queryForObject( SELECT_BOOK + " where book book_name=?",new BookRowMapper() ,bookName);
+			book=jdbc.queryForObject( SELECT_BOOK + " where book_name=?",new BookRowMapper() ,bookName);
 		}catch (DataAccessException e) {
 		}
 		return book;
@@ -148,6 +148,18 @@ public class JdbcBookRepository implements BookRepository{
 		if (totalCount < 1)
 			return new PaginationSupport<Book>(new ArrayList<Book>(0),0);
 		List<Book> items =  jdbc.query(SELECT_BOOK + " and s1.book_name like ? order by s1.book_id limit ? offset  ?",new BookRowMapper(),"'%"+bookName+"%'",pageSize, startIndex);
+		PaginationSupport<Book> ps = new PaginationSupport<Book>(items,totalCount,pageSize, startIndex);
+		return ps;
+	}
+	
+	@Override
+	public PaginationSupport<Book> findPageByBookId(int pageNo, int pageSize, int bookId) {
+		// TODO 自动生成的方法存根
+		int totalCount = (int)getBookCount();
+		int startIndex = PaginationSupport.convertFromPageToStartIndex(pageNo, pageSize);
+		if (totalCount < 1)
+			return new PaginationSupport<Book>(new ArrayList<Book>(0),0);
+		List<Book> items =  jdbc.query(SELECT_BOOK + " and s1.book_id= ? order by s1.book_id limit ? offset  ?",new BookRowMapper(),bookId,pageSize, startIndex);
 		PaginationSupport<Book> ps = new PaginationSupport<Book>(items,totalCount,pageSize, startIndex);
 		return ps;
 	}

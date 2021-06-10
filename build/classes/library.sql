@@ -18,8 +18,15 @@ user_state Integer default 0,
 user_remove Integer default 0
 )ENGINE = INNODB DEFAULT CHARSET = utf8;
 
-insert into users (user_name,user_account,user_password) values ('罗成云','lcy123','123456');
-insert into users (user_name,user_account,user_password,user_identity) values ('田小梅','txm123','123456',1);
+insert into users (user_name,user_account,user_password,user_identity) values ('罗成云','lcy123','123456',1);
+insert into users (user_name,user_account,user_password,user_identity) values ('田梅','tm123','123456',1);
+insert into users (user_name,user_account,user_password) values ('罗小云','lxy123','123456');
+insert into users (user_name,user_account,user_password) values ('田小梅','txm123','123456');
+insert into users (user_name,user_account,user_password) values ('罗罗','ll123','123456');
+insert into users (user_name,user_account,user_password) values ('田田','tt123','123456');
+insert into users (user_name,user_account,user_password) values ('小田田','xtt123','123456');
+insert into users (user_name,user_account,user_password) values ('小罗罗','xll123','123456');
+
 
 
 
@@ -60,11 +67,10 @@ create table book(
 book_id Integer not null primary key AUTO_INCREMENT,
 book_name char(60) not null ,
 book_ISBN char(30) not null,
-book_dese char(255) not null,
+book_desc char(255) not null,
 book_price double(10,2) not null,
 book_release Date not null,
 book_localtion char(40) not null,
-book_count Integer not null ,
 book_state Integer not null,
 book_author Integer not null,
 book_publish Integer not null,
@@ -74,10 +80,18 @@ foreign key (book_publish) references publishment(publish_id),
 foreign key (book_type) references type(type_id)
 )ENGINE = INNODB DEFAULT CHARSET = utf8;
 
-insert into book(book_name,book_ISBN,book_dese,book_price,book_release,book_localtion,book_count,book_state,book_author,book_publish,book_type) 
-values('红楼梦','11111111','四大名著之一',99.30,'1999-09-09','52-A-001',10,2,1,1,2);
-insert into book(book_name,book_ISBN,book_dese,book_price,book_release,book_localtion,book_count,book_state,book_author,book_publish,book_type) 
-values('西游记','22222222','四大名著之一',99.30,'1999-09-09','52-B-001',10,1,2,2,2);
+insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
+values('红楼梦','11111111','四大名著之一',99.30,'1999-09-09','52-A-001',2,1,1,2);
+insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
+values('西游记','22222222','四大名著之一',99.30,'1999-09-09','52-B-001',1,2,2,2);
+insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
+values('红楼梦','11111111','四大名著之一',99.30,'1999-09-09','52-A-001',1,1,1,2);
+insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
+values('西游记','22222222','四大名著之一',99.30,'1999-09-09','52-B-001',2,2,2,2);
+insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
+values('红楼梦','11111111','四大名著之一',99.30,'1999-09-09','52-A-001',0,1,1,2);
+insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
+values('西游记','22222222','四大名著之一',99.30,'1999-09-09','52-B-001',0,2,2,2);
 
 
 
@@ -92,7 +106,9 @@ foreign key (lend_book) references book(book_id),
 foreign key (lend_user) references users(user_id)
 )ENGINE = INNODB DEFAULT CHARSET = utf8;
 
-insert into lend (lend_book,lend_user,lend_day) values (1,1,'2020-02-20');
+insert into lend (lend_book,lend_user,lend_day) values (1,3,'2020-02-20');
+insert into lend (lend_book,lend_user,lend_day) values (4,4,'2020-02-20');
+insert into lend (lend_book,lend_user,lend_day,lend_back) values (5,5,'2020-02-20','2020-04-20');
 
  
 
@@ -105,7 +121,9 @@ foreign key (lendcar_book) references book(book_id),
 foreign key (lendcar_user) references users(user_id)
 )ENGINE = INNODB DEFAULT CHARSET = utf8;
 
-insert into lendcar(lendcar_user,lendcar_book) values (1,2);
+insert into lendcar(lendcar_user,lendcar_book) values (3,6);
+insert into lendcar(lendcar_user,lendcar_book) values (4,5);
+
 
 
 

@@ -342,7 +342,7 @@ public class ManagerController {
 		int row=lendRepository.removeLend(id);
 		String string="";
 		if (row==0) {
-			string="删除记录失败";
+			string="删除记录失败,此书未归还";
 		}else {
 			string="删除记录成功";
 		}
@@ -362,6 +362,7 @@ public class ManagerController {
 	@RequestMapping(value="managersearchbook" , method=RequestMethod.GET)
 	public String SelectBookList(@RequestParam(value="bookname",defaultValue="")String bookname,@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
 		model.addAttribute("bookpaginationSupport", bookRepository.findPageByBookName(pageNo, pageSize,bookname));
+		model.addAttribute("book", new Book());
 		return "manageBook";
 		
 	}

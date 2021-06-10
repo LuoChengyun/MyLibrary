@@ -29,18 +29,6 @@ import ml.domain.*;
 public class HomeController {
 	@Autowired
 	private UserRepository userRepository;
-//	@Autowired
-//	private BookRepository bookRepository;
-//	@Autowired
-//	private AuthorRepository authorRepository;
-//	@Autowired
-//	private TypeRepository TypeRepository;
-//	@Autowired
-//	private PublishmentRepository publishmentRepository;
-//	@Autowired
-//	private LendRepository lendRepository;
-//	@Autowired
-//	private LendCarRepository lendCarRepository;
 	
 	
 	
@@ -58,7 +46,7 @@ public class HomeController {
 		return "login";
 	}
 	/**
-	 * 
+	 * 提交登录
 	 * @param account
 	 * @param password
 	 * @param session

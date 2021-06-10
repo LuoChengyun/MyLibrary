@@ -16,10 +16,9 @@
 <%String base="/MyLibrary/resources/css/"; %>
 </head>
 <link href="<%=base %>booklist.css" type="text/css" rel="stylesheet">
-<body>
+<body class="body">
 <jsp:include page="userNavigation.jsp"></jsp:include><br></br>
  <div class="search">
- 	<h1 class="titletype">查询书籍</h1> 
 	<form method="GET" action="searchbook" method="GET">
 		<input type="text" class="input" placeholder="请输入书名" name="bookname"/>
 		<input type="submit" class="search" value="搜索"  />
@@ -59,10 +58,10 @@
 					<c:out value="${book.bookType.getTypeName()}" />
 				</td> 
  				<td>
-					<a href="<c:url value="checkuser?id=${book.bookId }" />">详情</a>
+					<a href="<c:url value="bookinformation?bookId=${book.bookId }" />">详情</a>
 				</td>
 				<td>
-					<a href="<c:url value="addlendcar?bookid=${book.bookId }&userid=${user.userId }" />">加车</a>
+					<a href="<c:url value="addlendcar?bookId=${book.bookId }&userId=${user.userId }" />">加车</a>
 				</td>
 			</tr>
 		</c:forEach>

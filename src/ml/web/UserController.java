@@ -50,6 +50,7 @@ public class UserController {
 	 */
 	@RequestMapping(value="/registerpage",method=RequestMethod.GET)
 	public String RegisterPage(Model model) {
+		model.addAttribute("user", new User());
 		return "register";
 	}
 	/**
@@ -69,7 +70,7 @@ public class UserController {
 		if((userRepository.findByUserName(user.getUserName())==null)) {
 			userRepository.addUser(user);
 			model.addAttribute("tipMessage", "注册成功");
-			return "tips";
+			return "registesuccess";
 		}
 		else {
 			model.addAttribute("logined", "注册失败,用户名已存在");
@@ -123,11 +124,20 @@ public class UserController {
 	@RequestMapping(value="booklist" , method=RequestMethod.GET)
 	public String BookList(@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
 		model.addAttribute("bookpaginationSupport", bookRepository.findPage(pageNo, pageSize));
-		model.addAttribute("type", new Type());
-		model.addAttribute("book", new Book());
-		model.addAttribute("publishment", new Publishment());
-		model.addAttribute("author", new Author());
 		return "booklist";
+	}
+	/**
+	 * 进入一本书的详情页面
+	 * @param bookid
+	 * @param pageNo
+	 * @param pageSize
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="bookinformation" , method=RequestMethod.GET)
+	public String BookInformation(@RequestParam(value="bookId",defaultValue="")int bookId,@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
+		model.addAttribute("bookpaginationSupport", bookRepository.findPageByBookId(pageNo, pageSize,bookId));
+		return "bookInformation";
 	}
 
 	/**

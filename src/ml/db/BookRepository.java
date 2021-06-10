@@ -26,5 +26,6 @@ public interface BookRepository {
     PaginationSupport<Book> findPage(int pageNo,int pageSize);
     //依据页码和指定页面大小，返回指定书的用户列表
     PaginationSupport<Book> findPageByBookName(int pageNo,int pageSize,String bookName);
-
+    //依据页码和指定页面大小，返回指定书的用户列表
+    PaginationSupport<Book> findPageByBookId(int pageNo,int pageSize,int bookId);
 }

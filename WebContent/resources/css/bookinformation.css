@@ -1,0 +1,39 @@
+*{
+    padding: 10px;
+    margin: 10px;
+}
+body{
+	background-image:url(/MyLibrary/resources/imag/informationBJ.jpg);
+}
+.infor{
+	 background-color: wheat;
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    width: 430px;
+    height: 600px;
+    margin: -300px 0 0 -215px;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    overflow: hidden;
+	
+}
+.title{
+	front-size:120%;
+	margin:center;
+}
+.back{
+	front-size:150%;
+	margin-left:10px;
+	margin-top:50px;
+}
+
+.add{
+	front-size:120%;
+	margin-left:180px;
+	
+}
+.lendbook{
+	front-size:120%;
+	margin-left:180px;
+}

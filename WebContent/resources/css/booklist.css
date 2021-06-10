@@ -1,39 +1,36 @@
-.body{
-	background:rgb(245, 194, 114);
+body{
+	background-image:url(/MyLibrary/resources/imag/userBJ.jpg);
 	
 }
 .search{
 	background-color:#fffeb8;
 	text-align:center;
-	font-size:100%;
+	font-size:120%;
 	padding: 0;
     box-shadow: 0 6px 13px 0 rgba(0,0,0,.1);
     border-radius: 10px;
     margin: auto;
-    margin-top: 100px;
-	margin:10px 50px;
+    margin-top: 30px;
+	margin:5px 50px;
 	
 }
 .adduser{
-	background-color:blue;
+	background-color:#fffeb8;
 	text-align:center;
-	font-size:150%;
+	font-size:120%;
 	padding: 0;
     box-shadow: 0 6px 13px 0 rgba(0,0,0,.1);
     border-radius: 10px;
     margin: auto;
     margin-top: 100px;
-	margin:100px 50px;
+	margin:5px 50px;
 }
 .userList{
 	text-align:center;
-	font-size:150%;
+	font-size:120%;
 }
 .titletype{
 	text-align:center;
-}
-.search{
-	font-size:150%;
 }
 .input{
 	font-size:120%;
@@ -45,7 +42,7 @@
     box-shadow: 0 6px 13px 0 rgba(0,0,0,.1);
     border-radius: 10px;
     margin: auto;
-	margin:100px 50px;
+	margin:1px 50px;
 }
 
 

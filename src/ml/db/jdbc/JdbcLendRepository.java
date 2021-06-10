@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -39,10 +40,29 @@ public class JdbcLendRepository implements LendRepository {
 		return (int) jdbc.queryForLong("select count(lend_id) from lend  ");
 	}
 	
+	public int addLend(Lend lend) {
+		
+		return 0;
+		
+	}
+	
+	
+	
 	@Override
 	public int removeLend(int lendId) {
 		// TODO 自动生成的方法存根
-		int rows = jdbc.update("delete from lend where lend_id= ?", lendId);
+		Lend lend = null;
+		try {
+			lend = jdbc.queryForObject(SELECT_LEND+" and lend_id=? ", new LendRowMapper(),lendId);
+		}catch(DataAccessException e) {
+		}
+		int rows ;
+		if(lend.getLendBack()==null) {
+			rows=0;
+		}
+		else {
+			rows = jdbc.update("delete from lend where lend_id= ?",lendId);
+		}
 		return rows;
 	}
 	

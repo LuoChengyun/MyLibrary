@@ -6,6 +6,8 @@ import ml.web.PaginationSupport;
 public interface LendRepository {
 	//获取记录总数
 	int getLendCount();
+	//增加一个记录
+	int addLend(Lend lend);
 	//删除记录
 	int removeLend(int lendId);
 	//获取记录列表

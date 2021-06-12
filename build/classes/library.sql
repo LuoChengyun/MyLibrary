@@ -81,13 +81,13 @@ foreign key (book_type) references type(type_id)
 )ENGINE = INNODB DEFAULT CHARSET = utf8;
 
 insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
-values('红楼梦','11111111','四大名著之一',99.30,'1999-09-09','52-A-001',2,1,1,2);
+values('红楼梦','11111111','四大名著之一',99.30,'1999-09-09','52-A-001',1,1,1,2);
 insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
 values('西游记','22222222','四大名著之一',99.30,'1999-09-09','52-B-001',1,2,2,2);
 insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
-values('红楼梦','11111111','四大名著之一',99.30,'1999-09-09','52-A-001',1,1,1,2);
+values('红楼梦','11111111','四大名著之一',99.30,'1999-09-09','52-A-001',0,1,1,2);
 insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
-values('西游记','22222222','四大名著之一',99.30,'1999-09-09','52-B-001',2,2,2,2);
+values('西游记','22222222','四大名著之一',99.30,'1999-09-09','52-B-001',0,2,2,2);
 insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
 values('红楼梦','11111111','四大名著之一',99.30,'1999-09-09','52-A-001',0,1,1,2);
 insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
@@ -100,34 +100,35 @@ create table lend(
 lend_id Integer not null primary key AUTO_INCREMENT,
 lend_book  Integer not null ,
 lend_user Integer not null ,
-lend_day Date not null,
+lend_state Integer not null,
+lend_day Date ,
 lend_back Date ,
 foreign key (lend_book) references book(book_id),
 foreign key (lend_user) references users(user_id)
 )ENGINE = INNODB DEFAULT CHARSET = utf8;
 
-insert into lend (lend_book,lend_user,lend_day) values (1,3,'2020-02-20');
-insert into lend (lend_book,lend_user,lend_day) values (4,4,'2020-02-20');
-insert into lend (lend_book,lend_user,lend_day,lend_back) values (5,5,'2020-02-20','2020-04-20');
+insert into lend (lend_book,lend_user,lend_state) values (3,3,0);
+insert into lend (lend_book,lend_user,lend_state) values (4,3,0);
+insert into lend (lend_book,lend_user,lend_state) values (6,4,0);
+insert into lend (lend_book,lend_user,lend_state,lend_day) values (1,4,1,'2020-02-20');
+insert into lend (lend_book,lend_user,lend_state,lend_day) values (2,4,2,'2020-02-20');
+insert into lend (lend_book,lend_user,lend_state,lend_day,lend_back) values (5,5,3,'2020-02-20','2020-04-20');
 
- 
+
+
 
  
 create table lendcar(
 lendcar_id Integer not null primary key AUTO_INCREMENT,
 lendcar_user Integer not null,
 lendcar_book Integer not null,
+lendcar_state Integer not null,
+lendcar_day Date not null,
 foreign key (lendcar_book) references book(book_id),
 foreign key (lendcar_user) references users(user_id)
 )ENGINE = INNODB DEFAULT CHARSET = utf8;
 
-insert into lendcar(lendcar_user,lendcar_book) values (3,6);
-insert into lendcar(lendcar_user,lendcar_book) values (4,5);
-
-
-
-
-
-
+insert into lendcar(lendcar_user,lendcar_book,lendcar_state,lendcar_day) values (6,3,0,'2020-02-20');
+insert into lendcar(lendcar_user,lendcar_book,lendcar_state,lendcar_day) values (4,4,0,'2020-02-20');
 
 

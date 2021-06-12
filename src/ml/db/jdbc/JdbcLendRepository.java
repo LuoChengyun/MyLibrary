@@ -1,5 +1,6 @@
 package ml.db.jdbc;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -40,10 +41,18 @@ public class JdbcLendRepository implements LendRepository {
 		return (int) jdbc.queryForLong("select count(lend_id) from lend  ");
 	}
 	
-	public int addLend(Lend lend) {
+	public int applyLend(int bookId,int userId) {
+		int lendstate = 0;
+		int rows = jdbc.update(INSERT_LEND_0,bookId,userId,lendstate);
+		return rows;
 		
-		return 0;
-		
+	}
+	
+	public int passApply(int lendId) {
+		int lendState = 1;
+		Date lendDay = new Date(System.currentTimeMillis());
+		int rows = jdbc.update(UPDATE_LEND_STATE,lendState,lendDay,lendId);
+		return rows;
 	}
 	
 	
@@ -57,7 +66,7 @@ public class JdbcLendRepository implements LendRepository {
 		}catch(DataAccessException e) {
 		}
 		int rows ;
-		if(lend.getLendBack()==null) {
+		if(lend.getLendState()==1) {
 			rows=0;
 		}
 		else {
@@ -68,22 +77,55 @@ public class JdbcLendRepository implements LendRepository {
 	
 
 	@Override
-	public PaginationSupport<Lend> findPage(int pageNo, int pageSize) {
+	public PaginationSupport<Lend> findPage_1_3(int pageNo, int pageSize) {
+		// TODO 自动生成的方法存根
+		int totalCount = (int) jdbc.queryForLong("select count(lend_id) from lend where lend_state=1 or lend_state=3  ");
+		int startIndex = PaginationSupport.convertFromPageToStartIndex(pageNo, pageSize);
+		if (totalCount < 1)
+			return new PaginationSupport<Lend>(new ArrayList<Lend>(0),0);
+		List<Lend> items =  jdbc.query(SELECT_PAGE_LENDS_1_3,new LendRowMapper(),pageSize, startIndex);
+		PaginationSupport<Lend> ps = new PaginationSupport<Lend>(items,totalCount,pageSize, startIndex);
+		return ps;
+	}
+	
+	@Override
+	public PaginationSupport<Lend> findPage_0(int pageNo, int pageSize) {
+		// TODO 自动生成的方法存根
+		int totalCount = (int) jdbc.queryForLong("select count(lend_id) from lend  where lend_state=0 ");
+		int startIndex = PaginationSupport.convertFromPageToStartIndex(pageNo, pageSize);
+		if (totalCount < 1)
+			return new PaginationSupport<Lend>(new ArrayList<Lend>(0),0);
+		List<Lend> items =  jdbc.query(SELECT_PAGE_LENDS_0,new LendRowMapper(),pageSize, startIndex);
+		PaginationSupport<Lend> ps = new PaginationSupport<Lend>(items,totalCount,pageSize, startIndex);
+		return ps;
+	}
+	
+	
+	@Override
+	public PaginationSupport<Lend> findPage_2(int pageNo, int pageSize) {
+		// TODO 自动生成的方法存根
+		int totalCount = (int) jdbc.queryForLong("select count(lend_id) from lend where lend_state=2  ");
+		int startIndex = PaginationSupport.convertFromPageToStartIndex(pageNo, pageSize);
+		if (totalCount < 1)
+			return new PaginationSupport<Lend>(new ArrayList<Lend>(0),0);
+		List<Lend> items =  jdbc.query(SELECT_PAGE_LENDS_2,new LendRowMapper(),pageSize, startIndex);
+		PaginationSupport<Lend> ps = new PaginationSupport<Lend>(items,totalCount,pageSize, startIndex);
+		return ps;
+	}
+	
+	@Override
+	public PaginationSupport<Lend> findPageByUserId(int userId,int pageNo, int pageSize) {
 		// TODO 自动生成的方法存根
 		int totalCount = (int)getLendCount();
 		int startIndex = PaginationSupport.convertFromPageToStartIndex(pageNo, pageSize);
 		if (totalCount < 1)
 			return new PaginationSupport<Lend>(new ArrayList<Lend>(0),0);
-		List<Lend> items =  jdbc.query(SELECT_PAGE_LENDS,new LendRowMapper(),pageSize, startIndex);
+		List<Lend> items =  jdbc.query(SELECT_PAGE_LENDS_BYUSER,new LendRowMapper(),userId,pageSize, startIndex);
 		PaginationSupport<Lend> ps = new PaginationSupport<Lend>(items,totalCount,pageSize, startIndex);
 		return ps;
 	}
 
-	@Override
-	public PaginationSupport<Lend> findPageByName(int pageNo, int pageSize, String userName) {
-		// TODO 自动生成的方法存根
-		return null;
-	}
+
 	
 	private static class LendRowMapper implements RowMapper<Lend> {
 		public Lend mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -103,18 +145,24 @@ public class JdbcLendRepository implements LendRepository {
 							rs.getInt("user_identity"),
 							rs.getInt("user_state"),
 							rs.getInt("user_remove")),
+					rs.getInt("lend_state"),
 					rs.getDate("lend_day"),
 					rs.getDate("lend_back"));
 		}
 	}
 	
 	
-	private String SELECT_LEND = "select s1.lend_id,s1.lend_book,s1.lend_user,s1.lend_day,s1.lend_back,"
+	private String INSERT_LEND_0 = "insert into lend (lend_book,lend_user,lend_state) values (?,?,?)" ;
+	private String UPDATE_LEND_STATE = " update lend set lend_state=? ,lend_day=? where lend_id=? ";
+	private String SELECT_LEND = "select s1.lend_id,s1.lend_book,s1.lend_user,s1.lend_state,s1.lend_day,s1.lend_back,"
 			+ "s2.user_id,s2.user_name,s2.user_account,s2.user_password,s2.user_identity,s2.user_state,user_remove,"
 			+ "s3.book_id,s3.book_name,s3.book_ISBN,s3.book_desc,s3.book_price,s3.book_release,s3.book_localtion,s3.book_state "
 			+ "from lend s1,book s3,users s2 "
 			+ "where s1.lend_book=s3.book_id and s1.lend_user=s2.user_id ";
-	private String SELECT_PAGE_LENDS = SELECT_LEND+" order by lend_id desc limit ? offset  ?  ";
+	private String SELECT_PAGE_LENDS_1_3 = SELECT_LEND+" and s1.lend_state=1 or s1.lend_state=3 order by s1.lend_id desc limit ? offset  ?  ";
+	private String SELECT_PAGE_LENDS_0 = SELECT_LEND+" and s1.lend_state=0  order by s1.lend_id desc limit ? offset  ?  ";
+	private String SELECT_PAGE_LENDS_2 = SELECT_LEND+" and s1.lend_state=2  order by s1.lend_id desc limit ? offset  ?  ";
+	private String SELECT_PAGE_LENDS_BYUSER = SELECT_LEND+ " and s1.lend_user=? order by s1.lend_id desc limit ? offset  ?  ";
 
 	
 

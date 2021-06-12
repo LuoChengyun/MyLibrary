@@ -23,13 +23,15 @@
 	价格: <c:out value="${book.bookPrice }"   ></c:out><br/><br/>
 	出版时间: <c:out value="${book.bookRelease }"   ></c:out><br/><br/>
 	位置: <c:out value="${book.bookLocation }"   ></c:out><br/><br/>
-	状态: <c:out value="${book.bookState eq 0 ? '可借':book.bookState eq 1 ? '不可借':book.bookState eq 2 ? '不可借':'' }"   ></c:out><br/><br/>
+	状态: <c:out value="${book.bookState eq 0 ? '可借':book.bookState eq 1 ? '不可借':'' }"   ></c:out><br/><br/>
 	作者: <c:out value="${book.bookAuthor.getAuthorName() }"   ></c:out><br/><br/>
 	出版社: <c:out value="${book.bookPublish.getPublishName() }"   ></c:out><br/><br/>
 	分类: <c:out value="${book.bookType.getTypeName() }"   ></c:out><br/><br/>
+	<a  class="add" href="<c:url value="addlendcar?bookId=${book.bookId }&userId=${user.userId }" />">加车</a>
+	<a class="lendbook" href="<c:url value="applybook?bookId=${book.bookId }&userId=${user.userId }" />">借书</a>
 	</c:forEach>
-	<a class="add" href="<c:url value="addlendcar?bookid=${book.bookId }&userid=${user.userId }" />">加车</a>
-	<a class="lendbook" href="<c:url value="addapply?bookid=${book.bookId }&userid=${user.userId }" />">借书</a>
+	<%-- <a class="add" href="<c:url value="addlendcar?bookid=${book.bookId }&userid=${user.userId }" />">加车</a> --%>
+	<%-- <a class="lendbook" href="<c:url value="applybook?bookId=${book.bookId }&userId=${user.userId }" />">借书</a> --%>
 </div>
 </body>
 </html>

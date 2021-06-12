@@ -21,7 +21,8 @@
             <li> <a href="<c:url value="managebook" />" class="nav-item" >图书管理</a></li>
             <li> <a href="<c:url value="manageauthor" />" class="nav-item" >作者管理</a></li>
             <li> <a href="<c:url value="managepublishment" />" class="nav-item" >出版社管理</a></li>
-             <li> <a href="<c:url value="backbook" />"class="nav-item" >还书管理</a></li>
+             <li> <a href="<c:url value="manageback" />"class="nav-item" >还书管理</a></li>
+             <li> <a href="<c:url value="manageapply" />"class="nav-item" >借书管理</a></li>
               <li> <a href="<c:url value="managelend" />"class="nav-item" >借书记录管理</a></li>
               <div class="nav-btn">
             <c:choose>

@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>借书记录管理</title>
+<title>借书管理</title>
 <%@ page language="java" import="java.lang.*"%>
 <%String base="/MyLibrary/resources/css/"; %>
 </head>
@@ -19,7 +19,7 @@
 <body class="body">
 <jsp:include page="managerNavigation.jsp"></jsp:include>
 <div class="list">
-	<h1 class="titletype">借书记录</h1> 
+	<h1 class="titletype">申请记录</h1> 
 	<table width=100%   id=customers >
 		<tr align="center">
   			<th>书名</th>
@@ -38,7 +38,7 @@
 					<c:out value="${lend.lendUser.getUserName()}" />
 				</td>
 				<td>
-					<c:out value="${lend.lendState eq 1 ? '在读':lend.lendState eq 3 ? '已还书': ''}" />
+					<c:out value="${lend.lendState eq 0 ? '申请借书': ''}" />
 				</td>
 				<td>
 					<c:out value="${lend.lendDay}" />
@@ -47,17 +47,17 @@
 					<c:out value="${lend.lendBack}" />
 				</td>
 				<td>
-					<a href="<c:url value="deletelend?id=${lend.lendId }" />">删除</a>
+					<a href="<c:url value="passapply?lendId=${lend.lendId }" />">通过</a>
 				</td>
 			</tr>
 		</c:forEach>
 	</table>
-	每页${lendpaginationSupport.pageSize}个记录，第${lendpaginationSupport.currentPageNo }/${lendpaginationSupport.totalPageCount }页，共${lendpaginationSupport.totalCount }个记录
+	每页${lendpaginationSupport.pageSize}个申请，第${lendpaginationSupport.currentPageNo }/${lendpaginationSupport.totalPageCount }页，共${lendpaginationSupport.totalCount }个申请
 	<c:if test="${lendpaginationSupport.previousPage}">
-		<a href="<c:url value="/manager/managelend?pageNo=${lendpaginationSupport.currentPageNo-1}" />" >上一页</a>
+		<a href="<c:url value="/manager/manageapply?pageNo=${lendpaginationSupport.currentPageNo-1}" />" >上一页</a>
 	</c:if>
 	<c:if test="${userpaginationSupport.nextPage}">
-		<a href="<c:url value="/manager/managelend?pageNo=${lendpaginationSupport.currentPageNo+1}" />" >下一页</a>
+		<a href="<c:url value="/manager/manageapply?pageNo=${lendpaginationSupport.currentPageNo+1}" />" >下一页</a>
 	</c:if>
 </div> 
 </body>

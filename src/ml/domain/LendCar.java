@@ -1,5 +1,7 @@
 package ml.domain;
 
+import java.sql.Date;
+
 /**
  * 借阅车
  * @author luochengyun
@@ -11,44 +13,75 @@ public class LendCar {
     private User lendCarUser;
     //借车包含的书ID
     private Book lendCarBook;
-
-    /**
-     * 构造函数
-     * @param lendCarUser
-     * @param lendCarBook
-     */
-    public LendCar(User lendCarUser, Book lendCarBook) {
-        this.lendCarUser = lendCarUser;
-        this.lendCarBook = lendCarBook;
-    }
-
-    public LendCar() {
-		// TODO 自动生成的构造函数存根
+    //借车状体0表示添加借阅车，1表示已经借阅
+    private int lendCarState;
+    //借车日期
+    private Date lendCarDay;
+	/**
+	 * @param lendCarId
+	 * @param lendCarUser
+	 * @param lendCarBook
+	 * @param lendCarState
+	 * @param lendCarDay
+	 */
+	public LendCar(int lendCarId, User lendCarUser, Book lendCarBook, int lendCarState, Date lendCarDay) {
+		super();
+		this.lendCarId = lendCarId;
+		this.lendCarUser = lendCarUser;
+		this.lendCarBook = lendCarBook;
+		this.lendCarState = lendCarState;
+		this.lendCarDay = lendCarDay;
 	}
-
+	/**
+	 * @param lendCarUser
+	 * @param lendCarBook
+	 * @param lendCarState
+	 * @param lendCarDay
+	 */
+	public LendCar(User lendCarUser, Book lendCarBook, int lendCarState, Date lendCarDay) {
+		super();
+		this.lendCarUser = lendCarUser;
+		this.lendCarBook = lendCarBook;
+		this.lendCarState = lendCarState;
+		this.lendCarDay = lendCarDay;
+	}
+	/**
+	 * 
+	 */
+	public LendCar() {
+		super();
+	}
 	public int getLendCarId() {
-        return lendCarId;
-    }
-
-    public void setLendCarId(int lendCarId) {
-        this.lendCarId = lendCarId;
-    }
-
+		return lendCarId;
+	}
+	public void setLendCarId(int lendCarId) {
+		this.lendCarId = lendCarId;
+	}
 	public User getLendCarUser() {
 		return lendCarUser;
 	}
-
 	public void setLendCarUser(User lendCarUser) {
 		this.lendCarUser = lendCarUser;
 	}
-
 	public Book getLendCarBook() {
 		return lendCarBook;
 	}
-
 	public void setLendCarBook(Book lendCarBook) {
 		this.lendCarBook = lendCarBook;
 	}
-
+	public int getLendCarState() {
+		return lendCarState;
+	}
+	public void setLendCarState(int lendCarState) {
+		this.lendCarState = lendCarState;
+	}
+	public Date getLendCarDay() {
+		return lendCarDay;
+	}
+	public void setLendCarDay(Date lendCarDay) {
+		this.lendCarDay = lendCarDay;
+	}
+    
+    
     
 }

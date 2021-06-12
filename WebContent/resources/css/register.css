@@ -52,11 +52,11 @@ body{
     margin-top:10px;
     margin-left:10px;
     border-radius: 10px;
-    background-color: blue;
+    background-color:lightblue;
 }
 .backtext{
 	font-size: 18px;
-    color: red;
+    color: rgb(6, 0, 0);
 	
 }
 
@@ -84,10 +84,13 @@ body{
     background:#804e00bd  23px 11px no-repeat;
 }
 
-#submit{
-    background-color: green; 
-    width: 30px;
-    height: 15px;
+.submit{
+    background-color: lightblue;
+    front-size:25px;
+    width:80px;
+    height:35px;
+    border-radius:10px;  
+    margin-left:180px;
 }
 
 .loginError{

@@ -329,10 +329,60 @@ public class ManagerController {
 	 */
 	@RequestMapping(value="/managelend",method=RequestMethod.GET)
 	public String LendList(@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
-		model.addAttribute("lendpaginationSupport",lendRepository.findPage(pageNo, pageSize));
-		model.addAttribute("lend",new Lend());
+		model.addAttribute("lendpaginationSupport",lendRepository.findPage_1_3(pageNo, pageSize));
 		return "manageLend" ;
 	}
+	
+	/**
+	 * 获取申请借书列表
+	 * @param pageNo
+	 * @param pageSize
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/manageapply",method=RequestMethod.GET)
+	public String ApplyLendList(@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
+		model.addAttribute("lendpaginationSupport",lendRepository.findPage_0(pageNo, pageSize));
+		model.addAttribute("lend",new Lend());
+		return "manageApply" ;
+	}
+	
+	
+	/**
+	 * 审核通过借书
+	 * @param lendId
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/passapply",method=RequestMethod.GET)
+	public String PassApply(@RequestParam(value="lendId",defaultValue="0") int lendId,Model model) {
+		int row=lendRepository.passApply(lendId);
+		String string="";
+		if (row==0) {
+			string="审核失败";
+		}else {
+			string="审核通过";
+		}
+		model.addAttribute("tipMessage", string);
+		return "tips";
+	}
+	
+	
+	/**
+	 * 获取申请还书列表
+	 * @param pageNo
+	 * @param pageSize
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/manageback",method=RequestMethod.GET)
+	public String BackLendList(@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
+		model.addAttribute("lendpaginationSupport",lendRepository.findPage_2(pageNo, pageSize));
+		model.addAttribute("lend",new Lend());
+		return "manageBack" ;
+	}
+	
+	
 	
 	/**
 	 * 删除记录
@@ -349,6 +399,7 @@ public class ManagerController {
 		model.addAttribute("tipMessage", string);
 		return "tips";
 	}
+
 	
 	
 	/**

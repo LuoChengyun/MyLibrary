@@ -31,7 +31,7 @@
   </form>
   <div class="reg-bar">
     <a href="<c:url value="/user/registerpage" />" class="reg">注册</a>
-    <a class="forget" href="index.html">忘记密码</a>
+    <a class="forget" href="/MyLibrary/notfoundpage">忘记密码</a>
   </div>
 </div>
   </body>

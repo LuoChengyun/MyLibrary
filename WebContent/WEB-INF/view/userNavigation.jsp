@@ -22,7 +22,7 @@
         <ul class="nav-items">
     		<li><a href="<c:url value="booklist" />" class="nav-item">首页</a></li>
     		<li><a href="<c:url value="bendcar" />" class="nav-item">借阅车</a></li>
-    		<li><a href="<c:url value="myrecord" />" class="nav-item">借书记录</a></li>
+    		<li><a href="<c:url value="userlend?userId=${user.userId }" />" class="nav-item">借书记录</a></li>
     		<li><a href="<c:url value="/user/usercenter" />" class="nav-item">${user.userAccount }</a></li>
     		<li><a href="<c:url value="/" />" class="nav-item btn">注销</a></li>
     		<%-- <div class="nav-btn">

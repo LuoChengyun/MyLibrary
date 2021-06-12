@@ -21,6 +21,7 @@ import ml.db.TypeRepository;
 import ml.db.UserRepository;
 import ml.domain.Author;
 import ml.domain.Book;
+import ml.domain.Lend;
 import ml.domain.Publishment;
 import ml.domain.Type;
 import ml.domain.User;
@@ -139,6 +140,17 @@ public class UserController {
 		model.addAttribute("bookpaginationSupport", bookRepository.findPageByBookId(pageNo, pageSize,bookId));
 		return "bookInformation";
 	}
+	
+	@RequestMapping(value="applybook" , method=RequestMethod.GET)
+	public String LendBook(@RequestParam(value="bookId",defaultValue="0") int bookId,@RequestParam(value="userId",defaultValue="0") int userId,Model model) {
+		int rows = lendRepository.applyLend(bookId, userId);
+		if (rows==0) {
+			model.addAttribute("tipMessage","已经申请");
+		}else {
+			model.addAttribute("tipMessage","无法申请");
+		}
+		return "usertips";
+	}
 
 	/**
 	 * 添加借阅车
@@ -148,14 +160,28 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping(value="addlendcar" , method=RequestMethod.GET)
-	public String addLendCar(@RequestParam(value="bookid",defaultValue="0") int bookid,@RequestParam(value="userid",defaultValue="0") int userid,Model model) {
-		int rows=lendCarRepository.addBookToCart(userid, bookid);
+	public String addLendCar(@RequestParam(value="bookId",defaultValue="0") int bookId,@RequestParam(value="userId",defaultValue="0") int userId,Model model) {
+		int rows=lendCarRepository.addBookToCart(userId, bookId);
 		if (rows==0) {
 			model.addAttribute("tipMessage","添加失败");
 		}else {
 			model.addAttribute("tipMessage","添加成功");
 		}
-		return "tips";
+		return "usertips";
+	}
+	
+	/**
+	 * 获取用户记录列表
+	 * @param pageNo
+	 * @param pageSize
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/userlend",method=RequestMethod.GET)
+	public String LendList(@RequestParam(value="userId",defaultValue="0") int userId,@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
+		model.addAttribute("lendpaginationSupport",lendRepository.findPageByUserId(userId,pageNo, pageSize));
+		model.addAttribute("lend",new Lend());
+		return "userlend" ;
 	}
 
 }

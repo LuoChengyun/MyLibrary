@@ -45,6 +45,14 @@ public class HomeController {
 	public String loginPage() {
 		return "login";
 	}
+	
+	/**
+	 * 进入登录页面
+	 */
+	@RequestMapping(value = "/notfoundpage", method = RequestMethod.GET)
+	public String notFoundPage() {
+		return "404";
+	}
 	/**
 	 * 提交登录
 	 * @param account

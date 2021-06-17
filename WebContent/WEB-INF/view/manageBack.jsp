@@ -47,7 +47,7 @@
 					<c:out value="${lend.lendBack}" />
 				</td>
 				<td>
-					<a href="<c:url value="passback?id=${lend.lendId }" />">通过</a>
+					<a href="<c:url value="passback?lendId=${lend.lendId }" />">通过</a>
 				</td>
 			</tr>
 		</c:forEach>

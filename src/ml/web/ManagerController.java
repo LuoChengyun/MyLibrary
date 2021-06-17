@@ -44,6 +44,8 @@ public class ManagerController {
 	@Autowired
 	private LendRepository lendRepository;
 	
+	
+	
 	/**
 	 * 退出登录
 	 */
@@ -63,6 +65,35 @@ public class ManagerController {
 		return "managerInformation";
 	}
 	
+	/**
+	 * 进入个人资料编辑页面
+	 */
+	@RequestMapping(value="/altermanagerpage",method=RequestMethod.GET)
+	public String Altermanager(@RequestParam(value = "userId", defaultValue = "0") int userId, Model model) {
+		User user=userRepository.findByUserId(userId);
+		model.addAttribute("user", user);
+		return "alterManager";
+	}
+	
+	/**
+	 * 提交修改个人信息
+	 */
+	@RequestMapping(value="/altermanager",method=RequestMethod.GET)
+	public String Submitalter(@RequestParam(value = "userName", defaultValue = "")String userName ,
+			@RequestParam(value = "userAccount", defaultValue = "")String userAccount ,
+			@RequestParam(value = "userPassword", defaultValue = "")String userPassword ,HttpSession session,Model model) {
+		
+		// 从session中取出用户对象
+		User user= (User)session.getAttribute("user");
+				//添加新用户信息到数据库
+				User newuser = new User(user.getUserId(),userName,userAccount,userPassword);
+				user=userRepository.alterManager(newuser);
+				session.setAttribute("user", newuser);
+				model.addAttribute("tipMessage", "修改成功");
+			return "tips";
+	}
+	
+	
 	
 	/**
 	 * 获取用户列表
@@ -75,7 +106,7 @@ public class ManagerController {
 	public String UserList(@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
 		model.addAttribute("userpaginationSupport",userRepository.findPage(pageNo, pageSize));
 		model.addAttribute("user",new User());
-		return "userList" ;
+		return "manageUser" ;
 	}
 	
 	
@@ -97,6 +128,23 @@ public class ManagerController {
 		model.addAttribute("tipMessage", string);
 		return "tips";
 	}
+	
+	/**
+	 * 初始化用户密码
+	 */
+	@RequestMapping(value="/initializepwd")
+	public String initializeUserPassword(@RequestParam(value="userId",defaultValue="0") int userId,Model model){
+		int row=userRepository.initializeUserPass(userId);
+		String string="";
+		if (row==0) {
+			string="初始化密码失败";
+		}else {
+			string="初始化密码成功";
+		}
+		model.addAttribute("tipMessage", string);
+		return "tips";
+	}
+	
 	
 	/**
 	 * 删除用户
@@ -153,6 +201,15 @@ public class ManagerController {
 		return "userList" ;
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * 获取分类列表
 	 * @param pageNo
@@ -206,6 +263,29 @@ public class ManagerController {
 		}
 		model.addAttribute("tipMessage", string);
 		return "tips";
+	}
+	
+	/**
+	 * 进入分类编辑页面
+	 */
+	@RequestMapping(value="/altertypepage",method=RequestMethod.GET)
+	public String Altertype(@RequestParam(value = "typeId", defaultValue = "0") int typeId, HttpSession session,Model model) {
+		Type type=typeRepository.findByTypeId(typeId);
+		model.addAttribute("type", type);
+		session.setAttribute("type", type);
+		return "alterType";
+	}
+
+	/**
+	 * 提交修改分类
+	 */
+	@RequestMapping(value="/altertype",method=RequestMethod.GET)
+	public String SubmitAlterType(@RequestParam(value = "typeName", defaultValue = "")String typeName ,HttpSession session,Model model) {
+		Type type= (Type)session.getAttribute("type");
+		Type newtype = new Type(type.getTypeId(),typeName);
+		type=typeRepository.alterType(newtype);
+		session.setAttribute("type", type);
+		return "redirect:/manager/managetype";
 	}
 	
 	
@@ -263,6 +343,30 @@ public class ManagerController {
 		return "tips";
 	}
 	
+	/**
+	 * 进入出版社编辑页面
+	 */
+	@RequestMapping(value="/alterpublishpage",method=RequestMethod.GET)
+	public String AlterPublishment(@RequestParam(value = "publishId", defaultValue = "0") int publishId, HttpSession session,Model model) {
+		Publishment publishment=publishmentRepository.findByPublishId(publishId);
+		model.addAttribute("publishment", publishment);
+		session.setAttribute("publishment", publishment);
+		return "alterPublishment";
+	}
+
+	/**
+	 * 提交修改出版社
+	 */
+	@RequestMapping(value="/alterpublishment",method=RequestMethod.GET)
+	public String SubmitAlterPublishment(@RequestParam(value = "publishName", defaultValue = "")String publishName ,
+			@RequestParam(value = "publishLocal", defaultValue = "")String publishLocal ,HttpSession session,Model model) {
+		Publishment publishment= (Publishment)session.getAttribute("publishment");
+		Publishment newpublishment = new Publishment(publishment.getPublishId(),publishName,publishLocal);
+		publishment=publishmentRepository.alterPublishment(newpublishment);
+		session.setAttribute("publishment", publishment);
+		return "redirect:/manager/managepublishment";
+	}
+	
 	
 	/**
 	 * 获取作者列表
@@ -316,6 +420,33 @@ public class ManagerController {
 		}
 		model.addAttribute("tipMessage", string);
 		return "tips";
+	}
+	
+	/**
+	 * 进入作者编辑页面
+	 */
+	@RequestMapping(value="/alterauthorpage",method=RequestMethod.GET)
+	public String AlterAuthor(@RequestParam(value = "authorId", defaultValue = "0") int authorId, HttpSession session,Model model) {
+		Author author=authorRepository.findByAuthorId(authorId);
+		model.addAttribute("author", author);
+		session.setAttribute("author", author);
+		return "alterAuthor";
+	}
+
+	/**
+	 * 提交修改作者
+	 */
+	@RequestMapping(value="/alterauthor",method=RequestMethod.GET)
+	public String SubmitAlterAuthor(@RequestParam(value = "authorName", defaultValue = "")String authorName ,
+			@RequestParam(value = "authorSex", defaultValue = "")int authorSex ,
+			@RequestParam(value = "authorIntroduct", defaultValue = "")String authorIntroduct ,HttpSession session,Model model) {
+		Author author= (Author)session.getAttribute("author");
+		
+			Author newauthor = new Author(author.getAuthorId(),authorName,authorSex,authorIntroduct);
+			author=authorRepository.alterAuthor(newauthor);
+			session.setAttribute("author", author);
+			return "redirect:/manager/manageauthor";
+		
 	}
 	
 	
@@ -382,6 +513,24 @@ public class ManagerController {
 		return "manageBack" ;
 	}
 	
+	/**
+	 * 审核通过还书
+	 * @param lendId
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/passback",method=RequestMethod.GET)
+	public String PassLend(@RequestParam(value="lendId",defaultValue="0") int lendId,Model model) {
+		int row=lendRepository.passBack(lendId);
+		String string="";
+		if (row==0) {
+			string="还书失败";
+		}else {
+			string="还书成功";
+		}
+		model.addAttribute("tipMessage", string);
+		return "tips";
+	}
 	
 	
 	/**
@@ -458,6 +607,25 @@ public class ManagerController {
 		model.addAttribute("tipMessage", string);
 		return "tips";
 	}
+	
+	
+	/**
+	 * 删除书籍
+	 */
+	@RequestMapping(value="/deletebook")
+	public String deleteBook(@RequestParam(value="bookId",defaultValue="0") int bookId,Model model){
+		int row=bookRepository.removeByBookId(bookId);
+		String string="";
+		if (row==0) {
+			string="删除书籍失败";
+		}else {
+			string="删除书籍成功";
+		}
+		model.addAttribute("tipMessage", string);
+		return "tips";
+	}
+	
+	
 
 	
 	

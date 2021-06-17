@@ -47,7 +47,7 @@ public class HomeController {
 	}
 	
 	/**
-	 * 进入登录页面
+	 * 资源访问错误
 	 */
 	@RequestMapping(value = "/notfoundpage", method = RequestMethod.GET)
 	public String notFoundPage() {
@@ -67,7 +67,6 @@ public class HomeController {
 			@RequestParam(value="password",defaultValue="") String password,
 			HttpSession session,Model model) {
 		User user=userRepository.findByAccount(account, password);
-		System.out.println(user.getUserAccount());
 		if(user!=null) {
 			if(user.getUserState()==0) {//账号可用
 				session.setAttribute("user", user);

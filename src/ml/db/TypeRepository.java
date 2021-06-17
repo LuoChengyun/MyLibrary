@@ -9,11 +9,11 @@ public interface TypeRepository {
 	//增加分类
 	Type addType(Type type);
 	//查询分类
-	Type findByTypeName(String typeName);
+	Type findByTypeId(int typeId);
 	//删除分类
 	int removeType(int typeId);
 	//修改分类
-	Type alterByTypeId(Type type);
+	Type alterType(Type type);
 	//获取分类列表
 	PaginationSupport<Type> findPage(int pageNo,int pageSize);
 	

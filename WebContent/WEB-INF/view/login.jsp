@@ -10,6 +10,8 @@
   </head>
   <link href="<%=base %>login.css" type="text/css" rel="stylesheet">
   <body>
+  <h1>欢迎来到:</h1>
+  <h1>YC   Library</h1>
  <div class="dowebox">
   <h1 class="title">账号密码登录</h1>
   <h3 class="logerror">${logined}</h3>

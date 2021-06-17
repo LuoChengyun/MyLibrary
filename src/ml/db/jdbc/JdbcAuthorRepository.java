@@ -44,7 +44,7 @@ public class JdbcAuthorRepository implements AuthorRepository {
 	}
 
 	@Override
-	public Author findOne(int authorId) {
+	public Author findByAuthorId(int authorId) {
 		// TODO 自动生成的方法存根
 		Author author = null;
 		try {

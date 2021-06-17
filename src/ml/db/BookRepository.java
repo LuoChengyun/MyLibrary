@@ -16,8 +16,6 @@ public interface BookRepository {
     int alterBookState_0(int bookId);
   //通过书的ID修改书的状态为1
     int alterBookState_1(int bookId);
-  //通过书的ID修改书的状态为2
-    int alterBookState_2(int bookId);
     //通过书的ID删除一本书
     int removeByBookId(int bookId);
     //通过ID修改一本书的信息

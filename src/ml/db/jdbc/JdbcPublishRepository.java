@@ -49,6 +49,17 @@ public class JdbcPublishRepository implements PublishmentRepository {
 		int rows = jdbc.update("delete from publishment where publish_id= ?", publishId);
 		return rows;
 	}
+	@Override
+	public Publishment findByPublishId(int publishId) {
+		// TODO 自动生成的方法存根
+		Publishment publishment = null;
+		try {
+			publishment = jdbc.queryForObject(SELECT_PUBLISHMENT+" where publish_id=?", new PublishmentRowMapper(),publishId);
+		}catch(DataAccessException e) {
+			
+		}
+		return publishment;
+	}
 
 	@Override
 	public Publishment alterPublishment(Publishment publishment) {
@@ -98,8 +109,10 @@ public class JdbcPublishRepository implements PublishmentRepository {
 	
 	private String INSERT_PUBLISHMENT = " insert into publishment (publish_name,publish_local) values (?,?)";
 	private String SELECT_PUBLISHMENT = " select publish_id,publish_name ,publish_local from publishment ";
-	private String UPDATE_PUBLISHMENT = " update publishment set publish_name=? publish_local where publish_id=?";
+	private String UPDATE_PUBLISHMENT = " update publishment set publish_name=? ,publish_local=? where publish_id=?";
 	private String SELECT_PAGE_PUBLISHMENTS = SELECT_PUBLISHMENT+" order by publish_id limit ? offset  ?";
+
+	
 
 	
 }

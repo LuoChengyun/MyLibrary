@@ -44,11 +44,11 @@ public class JdbcTypeRepository implements TypeRepository {
 	}
 
 	@Override
-	public Type findByTypeName(String typeName) {
+	public Type findByTypeId(int typeId) {
 		// TODO 自动生成的方法存根
 		Type type = null;
 		try {
-			type=jdbc.queryForObject(SELECT_TYPE +" where type_name=?", new TypeRowMapper(),typeName);
+			type=jdbc.queryForObject(SELECT_TYPE +" where type_id=?", new TypeRowMapper(),typeId);
 		}catch(DataAccessException e) {
 			
 		}
@@ -63,7 +63,7 @@ public class JdbcTypeRepository implements TypeRepository {
 	}
 
 	@Override
-	public Type alterByTypeId(Type type) {
+	public Type alterType(Type type) {
 		// TODO 自动生成的方法存根
 		jdbc.update(UPDATE_TYPE,type.getTypeName(),type.getTypeId());
 		return type;

@@ -8,6 +8,8 @@ public interface PublishmentRepository {
 	int getPublishmentCount();
 	//增加出版社
 	Publishment addPublishment(Publishment publishment);
+	//查询出版社
+	Publishment findByPublishId(int publishId);
 	//删除出版商
 	int removePublishment(int publishId);
 	//修改出版商

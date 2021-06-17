@@ -22,10 +22,6 @@ insert into users (user_name,user_account,user_password,user_identity) values ('
 insert into users (user_name,user_account,user_password,user_identity) values ('田梅','tm123','123456',1);
 insert into users (user_name,user_account,user_password) values ('罗小云','lxy123','123456');
 insert into users (user_name,user_account,user_password) values ('田小梅','txm123','123456');
-insert into users (user_name,user_account,user_password) values ('罗罗','ll123','123456');
-insert into users (user_name,user_account,user_password) values ('田田','tt123','123456');
-insert into users (user_name,user_account,user_password) values ('小田田','xtt123','123456');
-insert into users (user_name,user_account,user_password) values ('小罗罗','xll123','123456');
 
 
 
@@ -37,8 +33,11 @@ publish_local char(200) not null
 )ENGINE = INNODB DEFAULT CHARSET = utf8;
 
 insert into publishment (publish_name,publish_local) values ('人民教育出版社','北京市海淀区001公路002号');
-insert into publishment (publish_name,publish_local) values ('西北工业大学出版社','陕西省西安市碑林区友谊路西工大');
-
+insert into publishment (publish_name,publish_local) values ('西北工业大学出版社','陕西省西安市碑林区友谊路127号');
+insert into publishment (publish_name,publish_local) values ('清华大学出版社','北京清华大学学研大厦A座');
+insert into publishment (publish_name,publish_local) values ('人民邮电出版社','北京市丰台区成寿寺路11号');
+insert into publishment (publish_name,publish_local) values ('科学出版社','北京市东黄城根北街16号');
+insert into publishment (publish_name,publish_local) values ('电子工业出版社','北京市海淀区万寿路173号');
 
 
 
@@ -51,6 +50,14 @@ author_introduct char(200)
 
 insert into author(author_name,author_sex,author_introduct) values ('曹雪芹',1,'著名作家');
 insert into author(author_name,author_sex,author_introduct) values ('吴承恩',0,'著名作家');
+insert into author(author_name,author_sex,author_introduct) values ('罗贯中',0,'著名作家');
+insert into author(author_name,author_sex,author_introduct) values ('施耐庵',0,'著名作家');
+insert into author(author_name,author_sex,author_introduct) values ('程杰',0,'IT作家');
+insert into author(author_name,author_sex,author_introduct) values ('奥本海姆',0,'美国作家');
+insert into author(author_name,author_sex,author_introduct) values ('克雷格.沃斯',0,'美国IT作家');
+insert into author(author_name,author_sex,author_introduct) values ('班凯',0,'军事作家');
+
+
 
 
 create table type(
@@ -61,6 +68,10 @@ type_name char(20) not null
 insert into type (type_name) values ('文学');
 insert into type (type_name) values ('名著');
 insert into type (type_name) values ('历史');
+insert into type (type_name) values ('计算机');
+insert into type (type_name) values ('数学');
+insert into type (type_name) values ('军事');
+
 
 
 create table book(
@@ -81,17 +92,23 @@ foreign key (book_type) references type(type_id)
 )ENGINE = INNODB DEFAULT CHARSET = utf8;
 
 insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
-values('红楼梦','11111111','四大名著之一',99.30,'1999-09-09','52-A-001',1,1,1,2);
-insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
-values('西游记','22222222','四大名著之一',99.30,'1999-09-09','52-B-001',1,2,2,2);
-insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
 values('红楼梦','11111111','四大名著之一',99.30,'1999-09-09','52-A-001',0,1,1,2);
 insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
-values('西游记','22222222','四大名著之一',99.30,'1999-09-09','52-B-001',0,2,2,2);
+values('西游记','22222222','四大名著之一',99.30,'1999-09-09','52-B-001',0,2,1,2);
 insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
-values('红楼梦','11111111','四大名著之一',99.30,'1999-09-09','52-A-001',0,1,1,2);
+values('水浒传','33333333','四大名著之一',99.30,'1999-09-09','52-C-001',0,4,1,2);
 insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
-values('西游记','22222222','四大名著之一',99.30,'1999-09-09','52-B-001',0,2,2,2);
+values('三国演义','44444444','四大名著之一',99.30,'1999-09-09','52-D-001',0,3,1,2);
+insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
+values('大话数据结构','55555555','数据结构参考书',55.30,'2000-02-02','33-A-001',0,5,3,4);
+insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
+values('信号与系统','66666666','很难的一门数学课',98.50,'1999-03-09','32-A-001',0,6,6,5);
+insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
+values('Spring实战','77777777','spring框架的使用和介绍',99.00,'2001-01-01','34-A-001',0,7,4,4);
+insert into book(book_name,book_ISBN,book_desc,book_price,book_release,book_localtion,book_state,book_author,book_publish,book_type) 
+values('大学生军事技能训练','88888888','军训必备书籍',88.50,'1997-05-04','44-A-001',0,8,2,6);
+
+
 
 
 
@@ -107,12 +124,6 @@ foreign key (lend_book) references book(book_id),
 foreign key (lend_user) references users(user_id)
 )ENGINE = INNODB DEFAULT CHARSET = utf8;
 
-insert into lend (lend_book,lend_user,lend_state) values (3,3,0);
-insert into lend (lend_book,lend_user,lend_state) values (4,3,0);
-insert into lend (lend_book,lend_user,lend_state) values (6,4,0);
-insert into lend (lend_book,lend_user,lend_state,lend_day) values (1,4,1,'2020-02-20');
-insert into lend (lend_book,lend_user,lend_state,lend_day) values (2,4,2,'2020-02-20');
-insert into lend (lend_book,lend_user,lend_state,lend_day,lend_back) values (5,5,3,'2020-02-20','2020-04-20');
 
 
 
@@ -122,13 +133,9 @@ create table lendcar(
 lendcar_id Integer not null primary key AUTO_INCREMENT,
 lendcar_user Integer not null,
 lendcar_book Integer not null,
-lendcar_state Integer not null,
 lendcar_day Date not null,
 foreign key (lendcar_book) references book(book_id),
 foreign key (lendcar_user) references users(user_id)
 )ENGINE = INNODB DEFAULT CHARSET = utf8;
-
-insert into lendcar(lendcar_user,lendcar_book,lendcar_state,lendcar_day) values (6,3,0,'2020-02-20');
-insert into lendcar(lendcar_user,lendcar_book,lendcar_state,lendcar_day) values (4,4,0,'2020-02-20');
 
 

@@ -36,7 +36,7 @@
 					<c:out value="${publishment.publishLocal}" />
 				</td>
 				<td>
-					<a href="<c:url value="alterpublishment?id=${publishment.publishId }" />">修改</a>
+					<a href="<c:url value="alterpublishpage?publishId=${publishment.publishId }" />">修改</a>
 				</td>
 				<td>
 					<a href="<c:url value="deletepublishment?id=${publishment.publishId }" />">删除</a>

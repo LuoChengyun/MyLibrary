@@ -21,10 +21,13 @@ body{
     border-radius: 20px;
     overflow: hidden;
 }
-.logo{
-    width: 104px;
-    margin: 50px auto 80px;
-    background:  0 0 no-repeat;
+h1{
+    width: 200px;
+    margin-left:60px;
+    margin-top:20px;
+    margin-bottom:20px;
+    font-size:25px;
+    color:#76f9fb;
 }
 .title{
     margin-top: 10px;
@@ -49,6 +52,7 @@ body{
     background-color: green;
     outline: none;
 }
+
 
 .form-item button {
     width: 250px;

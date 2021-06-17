@@ -53,6 +53,20 @@ public class User {
 	 * @param userName
 	 * @param userAccount
 	 * @param userPassword
+	 */
+	public User(int userId, String userName, String userAccount, String userPassword) {
+		super();
+		this.userId = userId;
+		this.userName = userName;
+		this.userAccount = userAccount;
+		this.userPassword = userPassword;
+	}
+
+	/**
+	 * @param userId
+	 * @param userName
+	 * @param userAccount
+	 * @param userPassword
 	 * @param userIdentity
 	 * @param userState
 	 * @param userRemove

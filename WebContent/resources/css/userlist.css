@@ -11,7 +11,7 @@ body{
 	
 }
 .search{
-	background-color:#fffeb8;
+	background-color:rgb(156, 216, 137);
 	text-align:center;
 	font-size:120%;
 	padding: 0;
@@ -23,7 +23,7 @@ body{
 	
 }
 .adduser{
-	background-color:#fffeb8;
+	background-color:rgb(156, 216, 137);
 	text-align:center;
 	font-size:120%;
 	padding: 0;

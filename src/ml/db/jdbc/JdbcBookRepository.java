@@ -98,13 +98,6 @@ public class JdbcBookRepository implements BookRepository{
 	}
 	
 	@Override
-	public int alterBookState_2(int bookId) {
-		// TODO 自动生成的方法存根
-		int rows = jdbc.update("update book set book_state=2 where book_id=? ",bookId);
-		return rows;
-	}
-
-	@Override
 	public int removeByBookId(int bookId) {
 		// TODO 自动生成的方法存根
 		int rows = jdbc.update("delete  from book  where book_id=? ",bookId);

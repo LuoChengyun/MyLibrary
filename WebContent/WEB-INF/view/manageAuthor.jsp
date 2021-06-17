@@ -39,7 +39,7 @@
 					<c:out value="${author.authorIntroduct}" />
 				</td>
 				<td>
-					<a href="<c:url value="alterauthor?id=${author.authorId }" />">修改</a>
+					<a href="<c:url value="alterauthorpage?authorId=${author.authorId }" />">修改</a>
 				</td>
 				<td>
 					<a href="<c:url value="deleteauthor?id=${author.authorId }" />">删除</a>
@@ -61,8 +61,8 @@
 		<%-- <sf:errors path="*" cssClass="error" /><br/> --%>
 		作者姓名: <sf:input path="authorName"   /><sf:errors path="authorName" cssClass="error" ></sf:errors><br/>
 		作者性别:<sf:select path="authorSex">
-					<option value="0" <c:if test="${'0' eq author.authorName}">selected</c:if> >男</option>
-					<option value="1" <c:if test="${'1' eq author.authorName}">selected</c:if> >女</option>
+					<option value="0" <c:if test="${'0' eq author.authorSex}">selected</c:if> >男</option>
+					<option value="1" <c:if test="${'1' eq author.authorSex}">selected</c:if> >女</option>
 				</sf:select><sf:errors path="authorSex" cssClass="error" ></sf:errors><br/>
 	<%-- 	作者性别: <sf:input path="authorSex"   /><sf:errors path="authorSex" cssClass="error" ></sf:errors><br/> --%>
 		作者介绍: <sf:input path="authorIntroduct"   /><sf:errors path="authorIntroduct" cssClass="error" ></sf:errors><br/>

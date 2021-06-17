@@ -19,6 +19,7 @@
 	姓名:<c:out value="${user.userName }" ></c:out><br/><br/>
 	账号: <c:out value="${user.userAccount}"></c:out><br/><br/>
 	密码: <c:out value="${user.userPassword }" ></c:out><br/><br/>
+	<a href="<c:url value="/manager/altermanagerpage?userId=${user.userId }" />">修改信息</a>
 </div>
 </body>
 </html>

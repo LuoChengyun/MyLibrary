@@ -11,13 +11,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>管理分类</title>
+<title>用户借阅车</title>
 <%@ page language="java" import="java.lang.*"%>
 <%String base="/MyLibrary/resources/css/"; %>
 </head>
 <link href="<%=base %>userlist.css" type="text/css" rel="stylesheet">
 <body>
-<jsp:include page="managerNavigation.jsp"></jsp:include>
+<jsp:include page="userNavigation.jsp"></jsp:include>
 <div class="list">
 	<h1 class="titletype">我的借阅车</h1> 
 	<table width=100%   id=customers >
@@ -25,17 +25,25 @@
   			<th>书名</th>
     		<th>操作</th>	
 		</tr>
-		<c:forEach items="${typepaginationSupport.items}" var="lendcar">
+		<c:forEach items="${lendcarpaginationSupport.items}" var="lendcar">
 			<tr align="center">
 				<td>
-					<c:out value="${lendcar.lendcarBook.getBookName()}" />
+					<c:out value="${lendcar.lendCarBook.getBookName()}" />
 				</td>
 				<td>
-					<a href="<c:url value="deletecar?id=${lendcar.lendcarId }" />">下车</a>
+					<a href="<c:url value="deletelendcar?lendCarId=${lendcar.lendCarId }" />">下车</a>
+					<a href="<c:url value="applybook?bookId=${lendcar.lendCarId }&userId=${user.userId }" />">借书</a>
 				</td>
 			</tr>
 		</c:forEach>
 	</table>
+	每页${lendcarpaginationSupport.pageSize}个记录，第${lendcarpaginationSupport.currentPageNo }/${lendcarpaginationSupport.totalPageCount }页，共${lendcarpaginationSupport.totalCount }个记录
+	<c:if test="${lendcarpaginationSupport.previousPage}">
+		<a href="<c:url value="/user/userlendcar?pageNo=${lendcarpaginationSupport.currentPageNo-1}" />" >上一页</a>
+	</c:if>
+	<c:if test="${userpaginationSupport.nextPage}">
+		<a href="<c:url value="/user/userlendcar?pageNo=${lendcarpaginationSupport.currentPageNo+1}" />" >下一页</a>
+	</c:if>
 </div>
 </body>
 </html>

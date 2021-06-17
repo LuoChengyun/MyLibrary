@@ -23,7 +23,7 @@
             <li> <a href="<c:url value="managepublishment" />" class="nav-item" >出版社管理</a></li>
              <li> <a href="<c:url value="manageback" />"class="nav-item" >还书管理</a></li>
              <li> <a href="<c:url value="manageapply" />"class="nav-item" >借书管理</a></li>
-              <li> <a href="<c:url value="managelend" />"class="nav-item" >借书记录管理</a></li>
+              <li> <a href="<c:url value="managelend" />"class="nav-item" >借书记录管理</a></li>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
               <div class="nav-btn">
             <c:choose>
             	<c:when test="${not empty sessionScope.user }">

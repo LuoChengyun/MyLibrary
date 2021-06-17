@@ -12,7 +12,7 @@ public interface AuthorRepository {
 	//增加作者
 	Author addAuthor(Author author);
 	//通过ID查询作者
-	Author findOne(int id);
+	Author findByAuthorId(int authorId);
 	//通过名字查询作者
 	Author findByName(String authorName);
 	//修改作者

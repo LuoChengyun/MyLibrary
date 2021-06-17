@@ -31,7 +31,7 @@
 					<c:out value="${type.typeName}" />
 				</td>
 				<td>
-					<a href="<c:url value="altertype?id=${type.typeId }" />">修改</a>
+					<a href="<c:url value="altertypepage?typeId=${type.typeId }" />">修改</a>
 				</td>
 				<td>
 					<a href="<c:url value="deletetype?id=${type.typeId }" />">删除</a>

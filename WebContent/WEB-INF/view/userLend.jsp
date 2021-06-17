@@ -19,14 +19,13 @@
 <body class="body">
 <jsp:include page="userNavigation.jsp"></jsp:include>
 <div class="list">
-	<h1 class="titletype">我的借书记录</h1> 
+	<h1 class="titletype">正在读的书</h1> 
 	<table width=100%   id=customers >
 		<tr align="center">
   			<th>书名</th>
   			<th>借书进度</th>
   			<th>借书日期</th>
   			<th>还书日期</th>
-    		<th>操作</th>	
 		</tr>
 		<c:forEach items="${lendpaginationSupport.items}" var="lend">
 			<tr align="center">
@@ -34,16 +33,13 @@
 					<c:out value="${lend.lendBook.getBookName()}" />
 				</td>
 				<td>
-					<c:out value="${lend.lendState eq 0 ? '审核中':lend.lendState eq 1 ? '在读': lend.lendState eq 2 ? '申请还书':lend.lendState eq 3 ? '已还':''}" />
+					<c:out value="${lend.lendState eq 0 ? '待审核':lend.lendState eq 1 ? '在读': lend.lendState eq 2 ? '申请还书':lend.lendState eq 3 ? '已还':''}" />
 				</td>
 				<td>
 					<c:out value="${lend.lendDay}" />
 				</td>
 				<td>
 					<c:out value="${lend.lendBack}" />
-				</td>
-				<td>
-					<a href="<c:url value="deletelend?id=${lend.lendId }" />">删除</a>
 				</td>
 			</tr>
 		</c:forEach>

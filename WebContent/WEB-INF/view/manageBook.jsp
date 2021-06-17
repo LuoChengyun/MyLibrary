@@ -30,7 +30,7 @@
 		<tr align="center">
   			<th>书名</th>
   			<th>ISBN</th>
-  	 		<th>价格</th>
+  	 		<th>价格(单价/元)</th>
   	 		<th>作者</th>
   			<th>出版社</th>
   			<th>类型</th>
@@ -58,10 +58,10 @@
 					<c:out value="${book.bookType.getTypeName()}" />
 				</td> 
  				<td>
-					<a href="<c:url value="deletebook?id=${book.bookId }" />">删除</a>
+					<a href="<c:url value="deletebook?bookId=${book.bookId }" />">删除</a>
 				</td>
 				<td>
-					<a href="<c:url value="alterbook?bookid=${book.bookId }" />">修改</a>
+					<a href="<c:url value="alterbook?bookId=${book.bookId }" />">修改</a>
 				</td>
 			</tr>
 		</c:forEach>

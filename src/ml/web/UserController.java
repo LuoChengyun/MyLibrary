@@ -141,17 +141,118 @@ public class UserController {
 		return "bookInformation";
 	}
 	
+	/**
+	 * 申请借书
+	 * @param bookId
+	 * @param userId
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="applybook" , method=RequestMethod.GET)
 	public String LendBook(@RequestParam(value="bookId",defaultValue="0") int bookId,@RequestParam(value="userId",defaultValue="0") int userId,Model model) {
 		int rows = lendRepository.applyLend(bookId, userId);
 		if (rows==0) {
-			model.addAttribute("tipMessage","已经申请");
-		}else {
 			model.addAttribute("tipMessage","无法申请");
+		}else {
+			model.addAttribute("tipMessage","已经申请");
 		}
 		return "usertips";
 	}
 
+	
+	/**
+	 * 获取用户记录列表
+	 * @param pageNo
+	 * @param pageSize
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/userlend",method=RequestMethod.GET)
+	public String LendList(@RequestParam(value="userId",defaultValue="0") int userId,@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
+		model.addAttribute("lendpaginationSupport",lendRepository.findPageByUserId(pageNo, pageSize,userId));
+		model.addAttribute("lend",new Lend());
+		return "userLend" ;
+	}
+	
+	/**
+	 * 获取用户正在读书的列表
+	 * @param pageNo
+	 * @param pageSize
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/userreading",method=RequestMethod.GET)
+	public String ReadList(@RequestParam(value="userId",defaultValue="0") int userId,@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
+		model.addAttribute("lendpaginationSupport",lendRepository.findPageByUserId_READ(userId,pageNo, pageSize));
+		model.addAttribute("lend",new Lend());
+		return "userReading" ;
+	}
+	
+	/**
+	 * 申请还书
+	 * @param bookid
+	 * @param userid
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="backlend" , method=RequestMethod.GET)
+	public String BackLend(@RequestParam(value="lendId",defaultValue="0") int lendId,Model model) {
+		int rows=lendRepository.backLend(lendId);
+		if (rows==0) {
+			model.addAttribute("tipMessage","还书申请发起失败");
+		}else {
+			model.addAttribute("tipMessage","已经发起还书申请");
+		}
+		return "usertips";
+	}
+	
+	/**
+	 * 获取用户申请记录
+	 * @param pageNo
+	 * @param pageSize
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/userapply",method=RequestMethod.GET)
+	public String ApplyList(@RequestParam(value="userId",defaultValue="0") int userId,@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
+		model.addAttribute("lendpaginationSupport",lendRepository.findPageByUserId_APPLY(userId,pageNo, pageSize));
+		return "userApply" ;
+	}
+	
+	
+	
+	
+	/**
+	 * 取消申请
+	 * @param bookid
+	 * @param userid
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="canclelend" , method=RequestMethod.GET)
+	public String CancleLend(@RequestParam(value="lendId",defaultValue="0") int lendId,Model model) {
+		int rows=lendRepository.cancleLend(lendId);
+		if (rows==0) {
+			model.addAttribute("tipMessage","取消失败");
+		}else {
+			model.addAttribute("tipMessage","已取消");
+		}
+		return "usertips";
+	}
+	
+	/**
+	 * 获取用户借阅车
+	 * @param pageNo
+	 * @param pageSize
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/userlendcar",method=RequestMethod.GET)
+	public String LendCarList(@RequestParam(value="userId",defaultValue="0") int userId,@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
+		model.addAttribute("lendcarpaginationSupport",lendCarRepository.findPageByUserId(pageNo, pageSize,userId));
+		return "userBookCar" ;
+	}
+	
 	/**
 	 * 添加借阅车
 	 * @param bookid
@@ -170,18 +271,22 @@ public class UserController {
 		return "usertips";
 	}
 	
+	
 	/**
-	 * 获取用户记录列表
-	 * @param pageNo
-	 * @param pageSize
-	 * @param model
-	 * @return
+	 * 将书从借阅车移除
 	 */
-	@RequestMapping(value="/userlend",method=RequestMethod.GET)
-	public String LendList(@RequestParam(value="userId",defaultValue="0") int userId,@RequestParam(value="pageNo",defaultValue="1")int pageNo,@RequestParam(value="pageSize",defaultValue="10") int pageSize,Model model) {
-		model.addAttribute("lendpaginationSupport",lendRepository.findPageByUserId(userId,pageNo, pageSize));
-		model.addAttribute("lend",new Lend());
-		return "userlend" ;
+	@RequestMapping(value="/deletelendcar")
+	public String deleteBookFromCar(@RequestParam(value="lendCarId",defaultValue="0") int lendCarId,Model model){
+		int row=lendCarRepository.removeBookFromCart(lendCarId);
+		String string="";
+		if (row==0) {
+			string="移除失败";
+		}else {
+			string="移除成功";
+		}
+		model.addAttribute("tipMessage", string);
+		return "usertips";
 	}
+	
 
 }

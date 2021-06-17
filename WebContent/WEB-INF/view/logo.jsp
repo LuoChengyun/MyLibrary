@@ -10,12 +10,10 @@
 <%@ page language="java" import="java.lang.*"%>
 <%String base="/MyLibrary/resources/css/"; %>
 </head>
-<link href="<%=base %>navigation.css" type="text/css" rel="stylesheet">
+<link href="<%=base %>logo.css" type="text/css" rel="stylesheet">
 <body>
 <div class="nav">
-    <nav class="nav-bar">
-    <h1 class = "logo">&nbsp&nbsp YC &nbsp Library  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Welcome  Administrator&nbsp&nbsp ${sessionScope.user.userAccount }</h1>
-    </nav>
+	<h1>Welcome  Administrator: ${sessionScope.user.userAccount }</h1>
 </div>
 </body>
 </html> 

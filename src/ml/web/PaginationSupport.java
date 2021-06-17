@@ -17,7 +17,7 @@ public class PaginationSupport<T> {
 	 * 页面默认大小
 	 */
 	
-	public final static int PAGESIZE=5;
+	public final static int PAGESIZE=10;
 	/*
 	 * 页面大小
 	 */

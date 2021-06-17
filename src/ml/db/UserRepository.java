@@ -24,18 +24,20 @@ public interface UserRepository {
     User findByAccount(String userAccount,String userPassword);
     //通过用户ID删除用户
     int removeUser(int id);
+    //初始化用户密码
+    int initializeUserPass(int userId);
     //禁用用户
     int checkUserById(int id);
     //恢复用户
     int backUserById(int id);
     //通过ID修改用户
     User alterUserByUserId(User user);
+    //修改管理员
+  	User alterManager(User user);
 	//依据页码和指定页面大小，返回用户列表
 	PaginationSupport<User> findPage(int pageNo,int pageSize);
 	//依据页码和指定页面大小，返回指定用户名的用户列表
 	PaginationSupport<User> findPageByUserName(int pageNo,int pageSize,String userAccount);
-	//修改管理员
-	User alterManager(User user);
 	
 	
 

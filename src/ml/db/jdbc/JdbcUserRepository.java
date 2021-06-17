@@ -91,6 +91,14 @@ public class JdbcUserRepository implements UserRepository {
 	}
 	
 	@Override
+	public int initializeUserPass(int userId) {
+		// TODO 自动生成的方法存根
+		int rows=jdbc.update("update users set user_password='123456' where user_id=?",userId);	
+		  return rows;
+	}
+	
+	
+	@Override
 	public int checkUserById(int id) {
 		// TODO 自动生成的方法存根
 		int rows=jdbc.update("update users set user_state=1 where user_id=?",id);
@@ -114,6 +122,17 @@ public class JdbcUserRepository implements UserRepository {
 				user.getUserIdentity(),
 				user.getUserState(),
 				user.getUserRemove());
+		return user;
+	}
+	
+	@Override
+	public User alterManager(User user) {
+		// TODO 自动生成的方法存根
+		jdbc.update(UPDATE_USER,
+				user.getUserName(),
+				user.getUserAccount(),
+				user.getUserPassword(),
+				user.getUserId());
 		return user;
 	}
 
@@ -142,11 +161,6 @@ public class JdbcUserRepository implements UserRepository {
 		return ps;
 	}
 
-	@Override
-	public User alterManager(User user) {
-		// TODO 自动生成的方法存根
-		return null;
-	}
 	
 	private static class UserRowMapper implements RowMapper<User> {
 		public User mapRow(ResultSet rs, int rowNum) throws SQLException {
